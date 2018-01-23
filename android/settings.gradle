@@ -1,0 +1,3 @@
+rootProject.name = 'speedloan'
+
+include ':app'
