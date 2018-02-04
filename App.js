@@ -6,17 +6,20 @@
 
 import React, { Component }  from 'react';
 import {
+  Container, Header, Left, Body, Right, Button, Icon, Title
+} from 'native-base';
+import {
   Platform,
   StyleSheet,
   Text,
   TextInput,
   View,
-  Button
 } from 'react-native';
 
 
 import firebase from 'firebase';
 var Nav = require('./components/nav.js');
+var Main_header = require('./components/header.js');
 
 
 const instructions = Platform.select({
@@ -49,7 +52,9 @@ export default class App extends Component {
   }
   render(){
     return(
-      <Nav/>
+      <Container>
+        <Nav/>
+      </Container>
     );
   }
 }
