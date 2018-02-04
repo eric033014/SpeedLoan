@@ -41,14 +41,7 @@ export default class login extends Component {
     static navigationOptions = {
       tabBarLabel:'登入',
     }
-    componentWillMount() {
-        firebase.initializeApp({
-            apiKey:'AIzaSyAyh82MrE-GGQKw75TUIDr84EnDUR64jVM',
-            authDomain:"speedloan-rrrr1234.firebaseapp.com",
-            databaseURL:"https://speedloan-rrrr1234.firebaseio.com/",
-            storageBucket:"speedloan-rrrr1234.appspot.com",
-        });
-    }
+    
 
 
     onButtonPress() {
