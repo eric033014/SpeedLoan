@@ -34,14 +34,14 @@ var styles = StyleSheet.create({
         alignItems: 'center'
     },
     drawerbanner: {
-      height: 80,
+      height: 50,
       width: 208
     }
 });
 
 const customnav = (props) =>(
   <Container style={{ backgroundColor:"#F2F2F2" }}>
-    <Header style={{ height: 100,backgroundColor:"#F2F2F2",elevation: 0 ,shadowOffset: {height: 0, width: 0} ,shadowOpacity: "transparent" ,shadowOpacity: 0,noShadow: true }} noShadow="true" androidStatusBarColor="#282828">
+    <Header style={{ height: 80,backgroundColor:"#F2F2F2",elevation: 0 ,shadowOffset: {height: 0, width: 0} ,shadowOpacity: "transparent" ,shadowOpacity: 0,noShadow: true }} noShadow="true" androidStatusBarColor="#282828">
       <Body style={{ shadowOpacity: "transparent" ,shadowOpacity: 0 }}>
         <Image
         style = {styles.drawerbanner}
