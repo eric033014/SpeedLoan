@@ -52,9 +52,7 @@ export default class App extends Component {
   }
   render(){
     return(
-      <Container>
         <Nav/>
-      </Container>
     );
   }
 }

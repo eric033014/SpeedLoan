@@ -4,9 +4,11 @@ import {
   StyleSheet,
   Text,
   TextInput,
-  View,
-  Button
+  View
 } from 'react-native';
+import {
+  Container, Header, Left, Body, Right, Button, Icon, Title, Content
+} from 'native-base';
 var styles = StyleSheet.create({
     description: {
         fontSize: 20,
@@ -20,20 +22,42 @@ var styles = StyleSheet.create({
 });
 
 export default class reserve extends Component {
-  static navigationOptions = {
-    tabBarLabel:'貸款諮詢',
-  }
+  constructor(props) {
+      super(props);
+      this.state = {
+        title: '貸款諮詢'
+      }
+    }
+    static navigationOptions = {
+      drawerIcon: ({ tintColor }) => (
+        <Icon type='Entypo' name="message" style={{ fontSize: 20 , color: tintColor }}  />
+      )
+    }
   // constructor(props) {
   //     super(props);
   //     this.state = {};
   //   }
     render() {
+      const { title } = this.state;
       return (
-     	  <View style={styles.container}>
+        <Container>
+        <Header style={{backgroundColor:"#3C3C3C"}} androidStatusBarColor="#282828">
+          <Left>
+            <Button transparent>
+              <Icon name='menu' style={{color:"#7ACECE"}}  onPress={()=>
+              this.props.navigation.navigate('DrawerOpen')}/>
+            </Button>
+          </Left>
+          <Body>
+          <Title>{title}</Title>
+          </Body>
+          <Right/>
+        </Header>
    	       <Text style={styles.description}>
            	 Reserve page
    	       </Text>
-       </View>
+        </Container>
+
       );
     }
 }
