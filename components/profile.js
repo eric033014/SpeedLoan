@@ -1,6 +1,7 @@
 // 'use strict';
 
 import React, { Component }  from 'react';
+import firebase from 'firebase';
 import {
   Platform,
   StyleSheet,
@@ -24,13 +25,57 @@ var styles = StyleSheet.create({
     },
 });
 
+//import {childRef} from '../App.js';
+
+
+
 export default class profile extends Component {
+
   constructor(props) {
       super(props);
-      this.state = {
-        title: '個人資訊'
-      }
+      this.state = ({
+        title: '個人資訊',
+        profile: [],
+        name: '',
+        phone: '',
+        email: '',
+        job: '',
+        income: '',
+        years: '',
+        location: '',
+        loading: false,
+    });
     }
+    /*
+    componentDidMount() {
+        firebase.database().ref().child('profile').on('value', (childSnapShot) => {
+            const child = [];
+            childSnapShot.forEach((doc) => {
+                child.push({
+                    key: doc.key,
+                    Name: doc.toJSON().Name
+                });
+                this.setState({
+                    profile: child,
+                    loading: false
+                });
+            });
+        });
+    }
+*/
+    onPressAdd = () => {
+        console.log(this.state.income_select);
+        firebase.database().ref('profile').push({
+            name: this.state.name,
+            email: this.state.email,
+            phone: this.state.phone,
+            income: this.state.income_select,
+            job: this.state.job_select,
+            location: this.state.region_select,
+            year: this.state.worked_select
+        });
+    }
+
     static navigationOptions = {
       drawerIcon: ({ tintColor }) => (
         <Icon name='ios-person' style={{ fontSize: 20 , color: tintColor }}  />
@@ -91,6 +136,14 @@ export default class profile extends Component {
                     name_border: '#7ACECE'
                   })
                   }}
+                  onChangeText={
+                      (text) => {
+                          this.setState({
+                              name: text
+                          });
+                      }
+                  }
+                  value={this.state.name}
                   style={{ borderBottomWidth: 1, borderBottomColor: this.state.name_border }} />
               </Item>
               <Item stackedLabel style={{borderColor: 'transparent', marginRight: 15}}>
@@ -106,6 +159,14 @@ export default class profile extends Component {
                     contact_border: '#7ACECE'
                   })
                   }}
+                  onChangeText={
+                      (text) => {
+                          this.setState({
+                              phone: text
+                          });
+                      }
+                  }
+                  value={this.state.phone}
                   style={{ borderBottomWidth: 1, borderBottomColor: this.state.contact_border }} />
               </Item>
               <Item stackedLabel style={{borderColor: 'transparent', marginRight: 15}}>
@@ -120,6 +181,14 @@ export default class profile extends Component {
                     email_border: '#7ACECE'
                   })
                   }}
+                  onChangeText={
+                      (text) => {
+                          this.setState({
+                              email: text
+                          });
+                      }
+                  }
+                  value={this.state.email}
                   style={{ borderBottomWidth: 1, borderBottomColor: this.state.email_border }} />
               </Item>
               <Label style={{ marginLeft: 15, marginTop: 10, fontSize: 15 }}>職業</Label>
@@ -211,7 +280,9 @@ export default class profile extends Component {
            }}
           />
             </Form>
-            <Button block style={{ backgroundColor: "#7ACECE",height: 45, marginLeft: 15, marginRight: 15, marginBottom: 30, elevation: 0 }}>
+            <Button block style={{ backgroundColor: "#7ACECE",height: 45, marginLeft: 15, marginRight: 15, marginBottom: 30, elevation: 0 }}
+           onPress={this.onPressAdd}
+            >
               <Text style={{color: "white"}} >確定</Text>
             </Button>
           </Content>

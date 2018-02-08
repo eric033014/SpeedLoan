@@ -41,6 +41,9 @@ const instructions = Platform.select({
 //     drawerPosition:'left'
 //   }
 // );
+
+
+
 export default class App extends Component {
   componentWillMount() {
       firebase.initializeApp({
@@ -49,6 +52,7 @@ export default class App extends Component {
           databaseURL:"https://speedloan-rrrr1234.firebaseio.com/",
           storageBucket:"speedloan-rrrr1234.appspot.com",
       });
+
   }
   render(){
     return(
@@ -56,3 +60,5 @@ export default class App extends Component {
     );
   }
 }
+
+//export {childRef};
