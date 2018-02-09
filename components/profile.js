@@ -70,11 +70,12 @@ export default class profile extends Component {
             name: this.state.name,
             email: this.state.email,
             phone: this.state.phone,
-            income: this.state.income,
-            job: this.state.job,
-            location: this.state.location,
-            year: this.state.years
+            income: this.state.income_select,
+            job: this.state.job_select,
+            location: this.state.region_select,
+            year: this.state.worked_select
         });
+
     }
 
     static navigationOptions = {
@@ -200,11 +201,12 @@ export default class profile extends Component {
               onValueChange={this.onValueChange_job_select.bind(this)}
               style={{ marginLeft: 15, marginRight: 15 }}
               >
-              <Item label="Wallet" value="key0" />
-              <Item label="ATM Card" value="key1" />
-              <Item label="Debit Card" value="key2" />
-              <Item label="Credit Card" value="key3" />
-              <Item label="Net Banking" value="key4" />
+              <Item label="請選擇您的職業..." value="key0" />
+              <Item label="財會人員	" value="key1" />
+              <Item label="教職人員" value="key2" />
+              <Item label="學生" value="key3" />
+              <Item label="無業人員" value="key4" />
+              <Item label="服務業" value="key5" />
             </Picker>
             <View
               style={{
@@ -222,11 +224,11 @@ export default class profile extends Component {
              onValueChange={this.onValueChange_income_select.bind(this)}
              style={{ marginLeft: 15, marginRight: 15 }}
              >
-             <Item label="Wallet" value="key0" />
-             <Item label="ATM Card" value="key1" />
-             <Item label="Debit Card" value="key2" />
-             <Item label="Credit Card" value="key3" />
-             <Item label="Net Banking" value="key4" />
+             <Item label="<25w" value="key0" />
+             <Item label="26W ~ 50W" value="key1" />
+             <Item label="51W ~ 75W" value="key2" />
+             <Item label="76W ~ 100W" value="key3" />
+             <Item label=">100W" value="key4" />
            </Picker>
            <View
              style={{
@@ -244,11 +246,11 @@ export default class profile extends Component {
             onValueChange={this.onValueChange_region_select.bind(this)}
             style={{ marginLeft: 15, marginRight: 15 }}
             >
-            <Item label="Wallet" value="key0" />
-            <Item label="ATM Card" value="key1" />
-            <Item label="Debit Card" value="key2" />
-            <Item label="Credit Card" value="key3" />
-            <Item label="Net Banking" value="key4" />
+            <Item label="北部地區" value="key0" />
+            <Item label="中部地區" value="key1" />
+            <Item label="南部地區" value="key2" />
+            <Item label="東部地區" value="key3" />
+            <Item label="離島地區" value="key4" />
           </Picker>
           <View
             style={{
@@ -261,16 +263,16 @@ export default class profile extends Component {
            <Label style={{ marginLeft: 15, marginTop: 10, fontSize: 15 }}>年資</Label>
            <Picker
            mode="dropdown"
-           placeholder="請選擇您的所在地..."
+           placeholder="請選擇您的年資..."
            selectedValue={this.state.worked_select}
            onValueChange={this.onValueChange_worked_select.bind(this)}
            style={{ marginLeft: 15, marginRight: 15 }}
            >
-           <Item label="Wallet" value="key0" />
-           <Item label="ATM Card" value="key1" />
-           <Item label="Debit Card" value="key2" />
-           <Item label="Credit Card" value="key3" />
-           <Item label="Net Banking" value="key4" />
+           <Item label="<3yr" value="key0" />
+           <Item label="3yr ~ 5yr" value="key1" />
+           <Item label="6yr ~ 10yr" value="key2" />
+           <Item label="11yr ~ 15yr" value="key3" />
+           <Item label=">15yr" value="key4" />
          </Picker>
          <View
            style={{
