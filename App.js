@@ -43,20 +43,34 @@ const instructions = Platform.select({
 // );
 
 
-
+const firebaseApp = firebase.initializeApp({
+    apiKey:'AIzaSyAyh82MrE-GGQKw75TUIDr84EnDUR64jVM',
+    authDomain:"speedloan-rrrr1234.firebaseapp.com",
+    databaseURL:"https://speedloan-rrrr1234.firebaseio.com/",
+    storageBucket:"speedloan-rrrr1234.appspot.com",
+});
+const rootRef = firebaseApp.database().ref();
+const itemsRef = rootRef.child('profile');
 export default class App extends Component {
-  componentWillMount() {
-      firebase.initializeApp({
-          apiKey:'AIzaSyAyh82MrE-GGQKw75TUIDr84EnDUR64jVM',
-          authDomain:"speedloan-rrrr1234.firebaseapp.com",
-          databaseURL:"https://speedloan-rrrr1234.firebaseio.com/",
-          storageBucket:"speedloan-rrrr1234.appspot.com",
-      });
+  // componentWillMount() {
+  //
+  //   itemsRef.push({
+  //       name: 'this.state.name',
+  //       email: 'this.state.email',
+  //       phone: 'this.state.phone',
+  //       income: 'this.state.income',
+  //       job: 'this.state.jo',
+  //       location: 'this.state.location',
+  //       year: 'this.state.years'
+  //   });
+  //   console.log("push");
+  //
+  // }
 
-  }
   render(){
+
     return(
-        <Nav/>
+        <Nav screenProps={firebase}/>
     );
   }
 }

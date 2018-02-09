@@ -1,7 +1,7 @@
 // 'use strict';
 
 import React, { Component }  from 'react';
-import firebase from 'firebase';
+// import firebase from 'firebase';
 import {
   Platform,
   StyleSheet,
@@ -39,12 +39,13 @@ export default class profile extends Component {
         name: '',
         phone: '',
         email: '',
-        job: '',
-        income: '',
-        years: '',
-        location: '',
+        job: 'eric',
+        income: '1000',
+        years: '1000',
+        location: 'Taipei',
         loading: false,
     });
+    console.log(this);
     }
     /*
     componentDidMount() {
@@ -64,15 +65,15 @@ export default class profile extends Component {
     }
 */
     onPressAdd = () => {
-        console.log(this.state.income_select);
-        firebase.database().ref('profile').push({
+        console.log(this.props.screenProps);
+        this.props.screenProps.database().ref('profile').push({
             name: this.state.name,
             email: this.state.email,
             phone: this.state.phone,
-            income: this.state.income_select,
-            job: this.state.job_select,
-            location: this.state.region_select,
-            year: this.state.worked_select
+            income: this.state.income,
+            job: this.state.job,
+            location: this.state.location,
+            year: this.state.years
         });
     }
 
