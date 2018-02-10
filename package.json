@@ -14,7 +14,7 @@
     "react-native-credit-card-input": "^0.4.1",
     "react-native-datepicker": "^1.6.0",
     "react-native-deprecated-custom-components": "^0.1.1",
-    "react-navigation": "^1.0.0-beta.29"
+    "react-navigation": "^1.0.3"
   },
   "devDependencies": {
     "babel-jest": "22.1.0",

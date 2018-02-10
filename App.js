@@ -121,7 +121,7 @@ export default class App extends Component {
 
   render(){
       if(this.state.login){
-        if(this.state.iscompony == 1){
+        if(this.state.iscompony == 0){
           return <Nav screenProps={firebase}/>;
         } else{
           return <CompanyNav screenProps={firebase}/>;
