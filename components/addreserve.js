@@ -25,13 +25,34 @@ var styles = StyleSheet.create({
 
 var city_area = [{
   name: "台北市",
-  area: ["內湖區","士林區","中山區","松山區"]
+  area: ["中正區","大同區","中山區","松山區","大安區","萬華區","信義區","士林區","北投區","內湖區","南港區","文山區"]
 },{
   name: "新北市",
-  area: ["土城區","板橋區","汐止區","淡水區"]
+  area: ["板橋區", "三重區", "中和區","新莊區","永和區","新店區","土城區","蘆洲區","樹林區","汐止區","三峽區","淡水區","鶯歌區","五股區","泰山區","林口區","瑞芳區","深坑區","石碇區","坪林區","三芝區","石門區","八里區","平溪區","雙溪區","貢寮區","金山區","萬里區","烏來區"]
 },{
   name: "桃園市",
-  area: ["中區","南區","北區","西區","東區"]
+  area: ["桃園區","中壢區","平鎮區","八德區","楊梅區","蘆竹區","龜山區","龍潭區","大溪區","大園區","觀音區","新屋區","復興區"]
+},{
+  name: "台中市",
+  area: ["中區","東區","南區","西區","北區","北屯區","西屯區","南屯區","太平區","大里區","霧峰區","烏日區","豐原區","后里區","石岡區","東勢區","和平區","新社區","潭子區","大雅區","神岡區","大肚區","沙鹿區","龍井區","梧棲區","清水區","大甲區","外埔區","大安區"]
+},{
+  name: "台南市",
+  area: ["中西區","東區","南區","北區","安平區","安南區","永康區","歸仁區","新化區","左鎮區","玉井區","楠西區","南化區","仁德區","關廟區","龍崎區","官田區","麻豆區","佳里區","西港區","七股區","將軍區","學甲區","北門區","新營區","後壁區","白河區","東山區","六甲區","下營區","柳營區","鹽水區","善化區","新市區","大內區","山上區","新市區","安定區"]
+},{
+  name: "高雄市",
+  area: ["楠梓區","左營區","鼓山區","三民區","鹽埕區","前金區","新興區","苓雅區","前鎮區","旗津區","小港區","鳳山地區","鳳山區","大寮區","鳥松區","林園區","仁武區","大樹區","大社區","岡山區","路竹區","橋頭區","梓官區","彌陀區","永安區","燕巢區","田寮區","阿蓮區","茄萣區","湖內區","旗山區","美濃區","內門區","杉林區","甲仙區","六龜區","茂林區","桃源區","那瑪夏區"]
+},{
+  name: "新竹縣",
+  area: ["竹北市","竹東鎮","新埔鎮","關西鎮","新豐鄉","峨眉鄉","寶山鄉","五峰鄉","橫山鄉","北埔鄉","尖石鄉","芎林鄉","湖口鄉"]
+},{
+  name: "苗栗縣",
+  area: ["苗栗市","頭份市","竹南鎮","後龍鎮","通霄鎮","苑裡鎮","卓蘭鎮","造橋鄉","西湖鄉","頭屋鄉","公館鄉","銅鑼鄉","三義鄉","大湖鄉","獅潭鄉","三灣鄉","南庄鄉","泰安鄉"]
+},{
+  name: "彰化縣",
+  area: ["和美鎮", "北斗鎮", "員林市", "二水鄉", "埔心鄉", "溪湖鎮", "線西鄉", "芬園鄉", "伸港鄉", "花壇鄉", "大村鄉", "永靖鄉", "溪州鄉", "竹塘鄉", "芳苑鄉", "田中鎮", "二林鎮", "埤頭鄉", "大城鄉", "田尾鄉", "社頭鄉", "秀水鄉", "埔鹽鄉", "鹿港鎮", "彰化市", "福興鄉"]
+},{
+  name: "南投縣",
+  area: ["中寮鄉","仁愛鄉","水里鄉","名間鄉","竹山鎮","信義鄉","南投市","埔里鎮","草屯鎮","國姓鄉","魚池鄉","鹿谷鄉","集集鎮"]
 }]
 
 export default class addreserve extends Component {
@@ -50,8 +71,61 @@ export default class addreserve extends Component {
         area_options2: [],
         hascity2: false,
         area_options3: [],
-        hascity3: false
+        hascity3: false,
+        userid:this.props.screenProps.auth().currentUser.uid,
+        loan_category: "key0",
+        need_money: 1000,
+        purpose: "Your purpose",
+        return_year: "key0",
+        date:"none",
+        date2:"none",
+        date3:"none",
+        select_city:"key1",
+        select_city2:"key2",
+        select_city3:"key2",
+        select_city_area:"key1",
+        select_city_area2:"key1",
+        select_city_area3:"key1",
       }
+    }
+    async componentWillMount() {
+        this.props.screenProps.database().ref('/profile/'+this.state.userid).once("value").then(function(snapshot) {
+          console.log(snapshot.val().name);
+          this.setState({
+            name:snapshot.val().name,
+            phone:snapshot.val().phone,
+            email:snapshot.val().email,
+            job_select: snapshot.val().job,
+            income_select: snapshot.val().income,
+            worked_select: snapshot.val().year,
+            region_select: snapshot.val().location,
+          });
+        }.bind(this));
+    }
+    onPressAdd = () => {
+        console.log(this.props.screenProps);
+        this.props.screenProps.database().ref('reserve').push({
+            account_id: this.state.userid,
+            name:this.state.name,
+            phone:this.state.phone,
+            email:this.state.email,
+            income: this.state.income_select,
+            job: this.state.job_select,
+            year: this.state.worked_select,
+            category: this.state.loan_category,
+            need_money: this.state.need_money,
+            purpose: this.state.purpose,
+            return_year: this.state.return_year,
+            date1: this.state.date,
+            date2: this.state.date2,
+            date3: this.state.date3,
+            city1: this.state.select_city,
+            city2: this.state.select_city2,
+            city3: this.state.select_city3,
+            area1: this.state.select_city_area,
+            area2: this.state.select_city_area2,
+            area3: this.state.select_city_area3,
+        });
     }
     onValueChange_loan_category(value: string) {
       this.setState({
@@ -178,12 +252,11 @@ export default class addreserve extends Component {
             onValueChange={this.onValueChange_loan_category.bind(this)}
             style={{ marginLeft: 15, marginRight: 15 }}
             >
-            <Item label="請選擇您的申請貸款類別..." value="key0" />
-            <Item label="財會人員	" value="key1" />
-            <Item label="教職人員" value="key2" />
-            <Item label="學生" value="key3" />
-            <Item label="無業人員" value="key4" />
-            <Item label="服務業" value="key5" />
+            <Item label="小額信貸" value="key0" />
+            <Item label="土地貸款" value="key1" />
+            <Item label="房屋二胎貸款" value="key2" />
+            <Item label="汽車貸款" value="key3" />
+            <Item label="工商融資" value="key4" />
           </Picker>
           <View
             style={{
@@ -206,7 +279,14 @@ export default class addreserve extends Component {
                     amount_border: '#7ACECE'
                   })
                   }}
-                  value={this.state.name}
+                  onChangeText={
+                      (text) => {
+                          this.setState({
+                              need_money: text
+                          });
+                      }
+                  }
+                  value={this.state.need_money}
                   style={{ borderBottomWidth: 1, borderBottomColor: this.state.amount_border }} />
               </Item>
 
@@ -218,6 +298,7 @@ export default class addreserve extends Component {
                <Label>貸款目的</Label>
                <Input
                  placeholder="請輸入您的貸款目的..."
+                 value={this.state.purpose}
                  onBlur={ () => { this.setState({
                    purpose_border: '#515151'
                  })
@@ -226,22 +307,28 @@ export default class addreserve extends Component {
                    purpose_border: '#7ACECE'
                  })
                  }}
+                 onChangeText={
+                     (text) => {
+                         this.setState({
+                             purpose: text
+                         });
+                     }
+                 }
                  style={{ borderBottomWidth: 1, borderBottomColor: this.state.purpose_border }} />
              </Item>
 
              <Label style={{ marginLeft: 15, marginTop: 10, fontSize: 15 }}>還款年限</Label>
              <Picker
              mode="dropdown"
-             placeholder="請選擇還款年限..."
+             placeholder="請選擇希望還款年限..."
              selectedValue={this.state.return_year}
              onValueChange={this.onValueChange_return_year.bind(this)}
              style={{ marginLeft: 15, marginRight: 15 }}
              >
-             <Item label="請選擇還款年限..." value="key0" />
-             <Item label="北部	" value="key1" />
-             <Item label="中部" value="key2" />
-             <Item label="南部" value="key3" />
-             <Item label="東部" value="key4" />
+             <Item label="1年內" value="key0" />
+             <Item label="2~5年內" value="key1" />
+             <Item label="5~10年內" value="key2" />
+             <Item label="10年以上" value="key3" />
            </Picker>
            <View
              style={{
@@ -260,8 +347,8 @@ export default class addreserve extends Component {
                     mode="datetime"
                     placeholder="請選擇預約時間"
                     format="YYYY-MM-DD HH:MM:SS"
-                    minDate="2016-05-01"
-                    maxDate="2016-06-01"
+                    minDate="2018-02-01"
+                    maxDate="2020-12-31"
                     confirmBtnText="選擇"
                     cancelBtnText="取消"
                     showIcon='false'
@@ -342,8 +429,8 @@ export default class addreserve extends Component {
                         mode="datetime"
                         placeholder="請選擇預約時間"
                         format="YYYY-MM-DD HH:MM:SS"
-                        minDate="2016-05-01"
-                        maxDate="2016-06-01"
+                        minDate="2018-02-01"
+                        maxDate="2020-12-31"
                         confirmBtnText="選擇"
                         cancelBtnText="取消"
                         showIcon='false'
@@ -424,8 +511,8 @@ export default class addreserve extends Component {
                             mode="datetime"
                             placeholder="請選擇預約時間"
                             format="YYYY-MM-DD HH:MM:SS"
-                            minDate="2016-05-01"
-                            maxDate="2016-06-01"
+                            minDate="2018-02-01"
+                            maxDate="2020-12-31"
                             confirmBtnText="選擇"
                             cancelBtnText="取消"
                             showIcon='false'
@@ -508,7 +595,7 @@ export default class addreserve extends Component {
             <Button block style={{ backgroundColor: "#7ACECE",height: 45, marginLeft: 15, marginRight: 15, marginBottom: 30, elevation: 0 }}
            onPress={this.onPressAdd}
             >
-              <Text style={{color: "white"}} >確定</Text>
+              <Text style={{color: "white"}} >預約</Text>
             </Button>
           </Content>
         </Container>
