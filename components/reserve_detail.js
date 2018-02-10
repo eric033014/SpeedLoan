@@ -84,7 +84,7 @@ export default class reserve_detail extends Component {
               <Item style={{borderColor: 'transparent', marginRight: 15, marginTop: 0}}><Label>請輸入貸款目的</Label></Item>
               <Item style={{borderColor: 'transparent', marginRight: 15, marginTop: 10}}></Item>
               <Item style={{borderColor: 'transparent', marginRight: 15}}><Label style={{ color:'gray' }}>區域</Label></Item>
-              <Item style={{borderColor: 'transparent', marginRight: 15, marginTop: 0}}><Label北部</Label></Item>
+              <Item style={{borderColor: 'transparent', marginRight: 15, marginTop: 0}}><Label>北部</Label></Item>
               <Item style={{borderColor: 'transparent', marginRight: 15, marginTop: 10}}></Item>
               <Item style={{borderColor: 'transparent', marginRight: 15}}><Label style={{ color:'gray' }}>事務所名</Label></Item>
               <Item style={{borderColor: 'transparent', marginRight: 15, marginTop: 0}}><Label>請輸入事務所名</Label></Item>
@@ -99,8 +99,8 @@ export default class reserve_detail extends Component {
               <Item style={{borderColor: 'transparent', marginRight: 15, marginTop: 0}}><Label>北部</Label></Item>
               /*項目格式
               <Item style={{borderColor: 'transparent', marginRight: 15, marginTop: 10}}></Item>
-              <Item style={{borderColor: 'transparent', marginRight: 15}}><Label style={{ color:'gray' }}><%= 項目名稱 %></Label></Item>
-              <Item style={{borderColor: 'transparent', marginRight: 15, marginTop: 0}}><Label><%= 項目值 %></Label></Item>
+              <Item style={{borderColor: 'transparent', marginRight: 15}}><Label style={{ color:'gray' }}></Label></Item>
+              <Item style={{borderColor: 'transparent', marginRight: 15, marginTop: 0}}><Label></Label></Item>
               缺的自己補
               */
 
