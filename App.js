@@ -20,6 +20,7 @@ import {
 
 import firebase from 'firebase';
 var Nav = require('./components/nav.js');
+var CompanyNav = require('./components/companynav.js')
 var Main_header = require('./components/header.js');
 
 const styles = StyleSheet.create({
@@ -80,9 +81,11 @@ export default class App extends Component {
         //this.setState({login: true,});
         const { email, password } = this.state;
         console.log(email+" "+password);
-          firebase.auth().signInWithEmailAndPassword(email,password)
+
+          firebase.auth().signInWithEmailAndPassword("eric0330eric@gmail.com","ricky42613")
             .then(this.onLoginSuccess.bind(this))
             .catch(this.onLoginFail.bind(this));
+
             ///////  底下為註冊方式  /////
             // .catch(() => {
             //   firebase.auth().createUserWithEmailAndPassword(email, password)
@@ -100,6 +103,12 @@ export default class App extends Component {
             login: true,
         });
         const user=firebase.auth().currentUser.uid;
+        firebase.database().ref('/profile/'+user).once("value").then(function(snapshot) {
+          console.log(snapshot.val().iscompony);
+          this.setState({
+            iscompony:snapshot.val().iscompony,
+          });
+        }.bind(this));
         //this.setState({ uid: user.uid });
         // firebase.database().ref('profile/'+user.uid).set({
         //   iscompony:0,
@@ -112,7 +121,11 @@ export default class App extends Component {
 
   render(){
       if(this.state.login){
-        return <Nav screenProps={firebase}/>;
+        if(this.state.iscompony == 0){
+          return <Nav screenProps={firebase}/>;
+        } else{
+          return <CompanyNav screenProps={firebase}/>;
+        }
       } else{
         return (
           <Container style={{backgroundColor:"#3C3C3C"}}>
