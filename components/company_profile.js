@@ -140,9 +140,9 @@ export default class company_profile extends Component {
             <Label style={{marginLeft: 15,marginBottom: 15,marginTop: 30}}>嗨，您好</Label>
             <Form style={{paddingBottom: 30}}>
               <Item stackedLabel style={{borderColor: 'transparent', marginRight: 15}}>
-                <Label>姓名</Label>
+                <Label>事務所名字</Label>
                 <Input
-                  placeholder="請輸入您的姓名..."
+                  placeholder="請輸入您的事務所名字..."
                   onBlur={ () => { this.setState({
                     name_border: '#515151'
                   })
@@ -162,9 +162,9 @@ export default class company_profile extends Component {
                   style={{ borderBottomWidth: 1, borderBottomColor: this.state.name_border }} />
               </Item>
               <Item stackedLabel style={{borderColor: 'transparent', marginRight: 15}}>
-                <Label>聯絡方式</Label>
+                <Label>事務所聯絡方式</Label>
                 <Input
-                  placeholder="請輸入您的手機號碼或是家用電話..."
+                  placeholder="請輸入您的事務所聯絡電話..."
                   keyboardType = 'numeric'
                   onBlur={ () => { this.setState({
                     contact_border: '#515151'
@@ -185,9 +185,9 @@ export default class company_profile extends Component {
                   style={{ borderBottomWidth: 1, borderBottomColor: this.state.contact_border }} />
               </Item>
               <Item stackedLabel style={{borderColor: 'transparent', marginRight: 15}}>
-                <Label>電子信箱</Label>
+                <Label>事務所電子信箱</Label>
                 <Input
-                  placeholder="請輸入您的電子信箱..."
+                  placeholder="請輸入您的事務所電子信箱..."
                   onBlur={ () => { this.setState({
                     email_border: '#515151'
                   })
@@ -206,51 +206,7 @@ export default class company_profile extends Component {
                   value={this.state.email}
                   style={{ borderBottomWidth: 1, borderBottomColor: this.state.email_border }} />
               </Item>
-              <Label style={{ marginLeft: 15, marginTop: 10, fontSize: 15 }}>職業</Label>
-              <Picker
-              mode="dropdown"
-              placeholder="請選擇您的職業..."
-              selectedValue={this.state.job_select}
-              onValueChange={this.onValueChange_job_select.bind(this)}
-              style={{ marginLeft: 15, marginRight: 15 }}
-              >
-              <Item label="請選擇您的職業..." value="key0" />
-              <Item label="財會人員	" value="key1" />
-              <Item label="教職人員" value="key2" />
-              <Item label="學生" value="key3" />
-              <Item label="無業人員" value="key4" />
-              <Item label="服務業" value="key5" />
-            </Picker>
-            <View
-              style={{
-                borderBottomColor: '#515151',
-                borderBottomWidth: 1,
-                marginLeft: 15,
-                marginRight: 15
-              }}
-             />
-             <Label style={{ marginLeft: 15, marginTop: 10, fontSize: 15 }}>年收入</Label>
-             <Picker
-             mode="dropdown"
-             placeholder="請選擇您的年收入..."
-             selectedValue={this.state.income_select}
-             onValueChange={this.onValueChange_income_select.bind(this)}
-             style={{ marginLeft: 15, marginRight: 15 }}
-             >
-             <Item label="<25w" value="250000" />
-             <Item label="26W ~ 50W" value="500000" />
-             <Item label="51W ~ 75W" value="750000" />
-             <Item label="76W ~ 100W" value="1000000" />
-             <Item label=">100W" value="1000000up" />
-           </Picker>
-           <View
-             style={{
-               borderBottomColor: '#515151',
-               borderBottomWidth: 1,
-               marginLeft: 15,
-               marginRight: 15
-             }}
-            />
+
             <Label style={{ marginLeft: 15, marginTop: 10, fontSize: 15 }}>所在地</Label>
             <Picker
             mode="dropdown"
@@ -273,10 +229,10 @@ export default class company_profile extends Component {
               marginRight: 15
             }}
            />
-           <Label style={{ marginLeft: 15, marginTop: 10, fontSize: 15 }}>年資</Label>
+           <Label style={{ marginLeft: 15, marginTop: 10, fontSize: 15 }}>事務所資歷</Label>
            <Picker
            mode="dropdown"
-           placeholder="請選擇您的年資..."
+           placeholder="請選擇您的事務所資歷..."
            selectedValue={this.state.worked_select}
            onValueChange={this.onValueChange_worked_select.bind(this)}
            style={{ marginLeft: 15, marginRight: 15 }}
