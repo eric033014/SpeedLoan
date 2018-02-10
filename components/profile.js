@@ -25,9 +25,6 @@ var styles = StyleSheet.create({
     },
 });
 
-//import {childRef} from '../App.js';
-
-
 
 export default class profile extends Component {
 
@@ -39,34 +36,51 @@ export default class profile extends Component {
         name: '',
         phone: '',
         email: '',
-        job: 'eric',
-        income: '1000',
-        years: '1000',
-        location: 'Taipei',
+        job_select: '',
+        income_select: '',
+        worked_select: '',
+        region_select: '',
         loading: false,
+        userid:this.props.screenProps.auth().currentUser.uid
     });
-    console.log(this);
-    }
-    /*
-    componentDidMount() {
-        firebase.database().ref().child('profile').on('value', (childSnapShot) => {
-            const child = [];
-            childSnapShot.forEach((doc) => {
-                child.push({
-                    key: doc.key,
-                    Name: doc.toJSON().Name
-                });
-                this.setState({
-                    profile: child,
-                    loading: false
-                });
-            });
+
+  }
+  async componentWillMount() {
+      this.props.screenProps.database().ref('/profile/'+this.state.userid).once("value").then(function(snapshot) {
+        console.log(snapshot.val().name);
+        this.setState({
+          name:snapshot.val().name,
+          phone:snapshot.val().phone,
+          email:snapshot.val().email,
+          job_select: snapshot.val().job,
+          income_select: snapshot.val().income,
+          worked_select: snapshot.val().year,
+          region_select: snapshot.val().location,
         });
-    }
-*/
+      }.bind(this));
+  }
+
+
+    // componentDidMount() {
+    //     firebase.database().ref().child('profile').on('value', (childSnapShot) => {
+    //         const child = [];
+    //         childSnapShot.forEach((doc) => {
+    //             child.push({
+    //                 key: doc.key,
+    //                 Name: doc.toJSON().Name
+    //             });
+    //             this.setState({
+    //                 profile: child,
+    //                 loading: false
+    //             });
+    //         });
+    //     });
+    // }
+
+
     onPressAdd = () => {
         console.log(this.props.screenProps);
-        this.props.screenProps.database().ref('profile').push({
+        this.props.screenProps.database().ref('/profile/'+this.state.userid).update({
             name: this.state.name,
             email: this.state.email,
             phone: this.state.phone,
@@ -75,7 +89,6 @@ export default class profile extends Component {
             location: this.state.region_select,
             year: this.state.worked_select
         });
-
     }
 
     static navigationOptions = {
@@ -168,7 +181,7 @@ export default class profile extends Component {
                           });
                       }
                   }
-                  value={this.state.phone}
+                  value={this.state.phone.toString()}
                   style={{ borderBottomWidth: 1, borderBottomColor: this.state.contact_border }} />
               </Item>
               <Item stackedLabel style={{borderColor: 'transparent', marginRight: 15}}>
@@ -224,11 +237,11 @@ export default class profile extends Component {
              onValueChange={this.onValueChange_income_select.bind(this)}
              style={{ marginLeft: 15, marginRight: 15 }}
              >
-             <Item label="<25w" value="key0" />
-             <Item label="26W ~ 50W" value="key1" />
-             <Item label="51W ~ 75W" value="key2" />
-             <Item label="76W ~ 100W" value="key3" />
-             <Item label=">100W" value="key4" />
+             <Item label="<25w" value="250000" />
+             <Item label="26W ~ 50W" value="500000" />
+             <Item label="51W ~ 75W" value="750000" />
+             <Item label="76W ~ 100W" value="1000000" />
+             <Item label=">100W" value="1000000up" />
            </Picker>
            <View
              style={{

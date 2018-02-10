@@ -60,7 +60,6 @@ const nav = DrawerNavigator(
     還款資訊:{screen:repayment},
     利率試算:{screen:rate},
     個人資訊:{ screen:profile},
-    登入:{screen:login},
 
   },
   {
