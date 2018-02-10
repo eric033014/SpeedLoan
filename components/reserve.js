@@ -7,7 +7,7 @@ import {
   View
 } from 'react-native';
 import {
-  Container, Header, Left, Body, Right, Button, Icon, Title, Content
+  Container, Header, Left, Body, Right, Button, Icon, Title, Content, Card, CardItem, Label
 } from 'native-base';
 var styles = StyleSheet.create({
     description: {
@@ -40,7 +40,7 @@ export default class reserve extends Component {
     render() {
       const { title } = this.state;
       return (
-        <Container>
+        <Container style={{ backgroundColor: '#EFEFEF' }} >
         <Header style={{backgroundColor:"#3C3C3C"}} androidStatusBarColor="#282828">
           <Left>
             <Button transparent>
@@ -53,9 +53,40 @@ export default class reserve extends Component {
           </Body>
           <Right/>
         </Header>
-   	       <Text style={styles.description}>
-           	 Reserve page
-   	       </Text>
+        <Content>
+        <Card style={{ marginLeft: 15, marginRight: 15, marginTop: 15, elevation: 0, borderWidth: 1, borderRadius: 0, borderColor: 'white' }}>
+          <CardItem style={{ borderWidth: 0, borderRadius: 0 }} >
+            <Body>
+              <Text style={{ color: '#82CC7A' }} >類別</Text>
+              <Text style={{ color: '#3C3C3C' }} >事務所</Text>
+            </Body>
+            <Right>
+            <Text style={{ color: '#7ACECE' }} >今日18:30</Text>
+            <Text>台北市,文山區</Text>
+            </Right>
+           </CardItem>
+         </Card>
+         <Card style={{ marginLeft: 15, marginRight: 15, marginTop: 15, elevation: 0, borderWidth: 1, borderRadius: 0, borderColor: 'white' }}>
+           <CardItem style={{ borderWidth: 0, borderRadius: 0 }} >
+             <Body>
+               <Text style={{ color: '#82CC7A' }} >類別</Text>
+               <Text style={{ color: '#3C3C3C' }} >事務所</Text>
+             </Body>
+             <Right>
+             <Text style={{ color: '#7ACECE' }} >今日18:30</Text>
+             <Text>台北市,文山區</Text>
+             </Right>
+            </CardItem>
+          </Card>
+
+      </Content>
+        <View style={{ backgroundColor: 'white' }} >
+        <Button block style={{ backgroundColor: "#7ACECE",height: 45, marginLeft: 15, marginRight: 15, marginTop: 20, marginBottom: 20, elevation: 0 }}
+       onPress={this.onPressAdd}
+        >
+          <Text style={{color: "white"}} >預約貸款諮詢</Text>
+        </Button>
+        </View>
         </Container>
 
       );
