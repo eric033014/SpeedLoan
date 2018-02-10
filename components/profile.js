@@ -39,10 +39,10 @@ export default class profile extends Component {
         name: '',
         phone: '',
         email: '',
-        job: 'eric',
-        income: '1000',
-        years: '1000',
-        location: 'Taipei',
+        job_select: 'key0',
+        income_select: 'key0',
+        worked_select: 'key0',
+        region_select: 'key0',
         loading: false,
     });
     console.log(this);
