@@ -4,10 +4,11 @@ import {
   StyleSheet,
   Text,
   TextInput,
-  View
+  View,
+  Image
 } from 'react-native';
 import {
-  Container, Header, Left, Body, Right, Button, Icon, Title, Content, Card, CardItem, Label
+  Container, Header, Left, Body, Right, Button, Icon, Title, Content, Form, Item, Input, Label, Picker
 } from 'native-base';
 var styles = StyleSheet.create({
     description: {
@@ -30,7 +31,7 @@ export default class advertisement extends Component {
     }
     static navigationOptions = {
       drawerIcon: ({ tintColor }) => (
-        <Icon type='Entypo' name="message" style={{ fontSize: 20 , color: tintColor }}  />
+        <Icon type='Ionicons' name="ios-radio-outline" style={{ fontSize: 20 , color: tintColor }}  />
       )
     }
   // constructor(props) {
@@ -40,9 +41,25 @@ export default class advertisement extends Component {
     render() {
       const { title } = this.state;
       return (
-        <View>
-          <Text>Advertisement page</Text>
-        </View>
+        <Container>
+        <Header style={{backgroundColor:"#3C3C3C"}} androidStatusBarColor="#282828">
+          <Left>
+            <Button transparent>
+              <Icon name='menu' style={{color:"#7ACECE"}}  onPress={()=>
+              this.props.navigation.navigate('DrawerOpen')}/>
+            </Button>
+          </Left>
+          <Body>
+          <Title>{title}</Title>
+          </Body>
+          <Right/>
+        </Header>
+   	      <View style={{ justifyContent: 'center', alignItems: 'center', height: '100%', marginTop: -100 }}>
+            <Image
+            style= {{ width: 150, height: 122.15 }}
+            source = {require('../assets/img/developing.png')} />
+          </View>
+        </Container>
       );
     }
 }

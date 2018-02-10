@@ -16,7 +16,7 @@ import {
   DrawerItems
 } from 'react-navigation';
 import {
-  Container, Header, Left, Body, Right, Button, Icon, Title, Content
+  Container, Header, Left, Body, Right, Button, Icon, Title, Content, Label
 } from 'native-base';
 
 import {
@@ -56,6 +56,7 @@ const customnav = (props) =>(
     <Content>
       <DrawerItems {...props} activeTintColor='#7ACECE' activeBackgroundColor='#3C3C3C' inactiveTintColor='#3C3C3C' inactiveBackgroundColor='transparent' />
     </Content>
+    <Label style={{ color: '#7ACECE', marginBottom: 20, marginLeft: 20, fontWeight: '800' }}>代書端</Label>
   </Container>
 )
 
