@@ -215,11 +215,11 @@ export default class profile extends Component {
               style={{ marginLeft: 15, marginRight: 15 }}
               >
               <Item label="請選擇您的職業..." value="key0" />
-              <Item label="財會人員	" value="key1" />
-              <Item label="教職人員" value="key2" />
-              <Item label="學生" value="key3" />
-              <Item label="無業人員" value="key4" />
-              <Item label="服務業" value="key5" />
+              <Item label="財會人員" value="財會人員" />
+              <Item label="教職人員" value="教職人員" />
+              <Item label="學生" value="學生" />
+              <Item label="無業人員" value="無業人員" />
+              <Item label="服務業" value="服務業" />
             </Picker>
             <View
               style={{

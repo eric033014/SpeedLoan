@@ -53,6 +53,36 @@ var city_area = [{
 },{
   name: "南投縣",
   area: ["中寮鄉","仁愛鄉","水里鄉","名間鄉","竹山鎮","信義鄉","南投市","埔里鎮","草屯鎮","國姓鄉","魚池鄉","鹿谷鄉","集集鎮"]
+},{
+  name: "雲林縣",
+  area: ["斗六市","斗南鎮","虎尾鎮","西螺鎮","土庫鎮","北港鎮","古坑鄉","大埤鄉","莿桐鄉","林內鄉","二崙鄉","崙背鄉","麥寮鄉","東勢鄉","褒忠鄉","臺西鄉","元長鄉","四湖鄉","口湖鄉","水林鄉"]
+},{
+  name: "嘉義縣",
+  area: ["民雄鄉","水上鄉","中埔鄉","朴子市","太保市","竹崎鄉","新港鄉","大林鎮","布袋鎮","東石鄉","六腳鄉","梅山鄉","義竹鄉","鹿草鄉","溪口鄉","番路鄉","阿里山鄉","大埔鄉"]
+},{
+  name: "屏東縣",
+  area: ["屏東市","潮州鎮","東港鎮","恆春鎮","萬丹鄉","長治鄉","麟洛鄉","九如鄉","里港鄉","鹽埔鄉","高樹鄉","萬巒鄉","內埔鄉","竹田鄉","新埤鄉","枋寮鄉","新園鄉","崁頂鄉","林邊鄉","南州鄉","佳冬鄉","琉球鄉","車城鄉","滿州鄉","枋山鄉","三地門鄉","霧臺鄉","瑪家鄉","泰武鄉","來義鄉","春日鄉","獅子鄉","牡丹鄉"]
+},{
+  name: "花蓮縣",
+  area: ["花蓮市","鳳林鎮","玉里鎮","新城鄉","吉安鄉","壽豐鄉","光復鄉","豐濱鄉","瑞穗鄉","富里鄉","秀林鄉","萬榮鄉","卓溪鄉"]
+},{
+  name: "宜蘭縣",
+  area: ["宜蘭市","羅東鎮","蘇澳鎮","頭城鎮","礁溪鄉","員山鄉","壯圍鄉","五結鄉","冬山鄉","三星鄉","大同鄉","南澳鄉"]
+},{
+  name: "台東縣",
+  area: ["臺東市","卑南鄉","成功鎮","太麻里鄉","關山鎮","東河鄉","池上鄉","鹿野鄉","長濱鄉","大武鄉","蘭嶼鄉","海端鄉","綠島鄉","金峰鄉","達仁鄉","延平鄉"]
+},{
+  name: "澎湖縣",
+  area: ["馬公市","湖西鄉","白沙鄉","西嶼鄉","望安鄉","七美鄉"]
+},{
+  name: "基隆市",
+  area: ["仁愛區","中正區","信義區","中山區","安樂區","七堵區","暖暖區"]
+},{
+  name: "新竹市",
+  area: ["東區","北區","香山區"]
+},{
+  name: "嘉義市",
+  area: ["東區","西區"]
 }]
 
 export default class addreserve extends Component {
@@ -73,10 +103,10 @@ export default class addreserve extends Component {
         area_options3: [],
         hascity3: false,
         userid:this.props.screenProps.auth().currentUser.uid,
-        loan_category: "key0",
+        loan_category: "小額信貸",
         need_money: 1000,
         purpose: "Your purpose",
-        return_year: "key0",
+        return_year: "1年內",
         date:"none",
         date2:"none",
         date3:"none",
@@ -252,11 +282,11 @@ export default class addreserve extends Component {
             onValueChange={this.onValueChange_loan_category.bind(this)}
             style={{ marginLeft: 15, marginRight: 15 }}
             >
-            <Item label="小額信貸" value="key0" />
-            <Item label="土地貸款" value="key1" />
-            <Item label="房屋二胎貸款" value="key2" />
-            <Item label="汽車貸款" value="key3" />
-            <Item label="工商融資" value="key4" />
+            <Item label="小額信貸" value="小額信貸" />
+            <Item label="土地貸款" value="土地貸款" />
+            <Item label="房屋二胎貸款" value="房屋二胎貸款" />
+            <Item label="汽車貸款" value="汽車貸款" />
+            <Item label="工商融資" value="工商融資" />
           </Picker>
           <View
             style={{
@@ -325,10 +355,10 @@ export default class addreserve extends Component {
              onValueChange={this.onValueChange_return_year.bind(this)}
              style={{ marginLeft: 15, marginRight: 15 }}
              >
-             <Item label="1年內" value="key0" />
-             <Item label="2~5年內" value="key1" />
-             <Item label="5~10年內" value="key2" />
-             <Item label="10年以上" value="key3" />
+             <Item label="1年內" value="1年內" />
+             <Item label="2~5年內" value="2~5年內" />
+             <Item label="5~10年內" value="5~10年內" />
+             <Item label="10年以上" value="10年以上" />
            </Picker>
            <View
              style={{
