@@ -56,6 +56,10 @@ export default class reserve_detail extends Component {
   //     super(props);
   //     this.state = {};
   //   }
+  static navigationOptions = {
+    drawerLabel: () => null
+ }
+
     render() {
       const { title } = this.state;
       return (
@@ -64,7 +68,7 @@ export default class reserve_detail extends Component {
           <Left>
             <Button transparent>
               <Icon type="Ionicons" name='md-arrow-back' style={{color:"#7ACECE"}}  onPress={()=>
-              this.props.navigation.navigate('DrawerOpen')}/>
+              this.props.navigation.navigate('貸款諮詢')}/>
             </Button>
           </Left>
           <Body>

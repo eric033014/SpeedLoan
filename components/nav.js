@@ -57,8 +57,12 @@ const customnav = (props) =>(
   </Container>
 )
 
+
+
+
 const nav = DrawerNavigator(
   {
+    reserve_detail:{ screen:reserve_detail},
     TEMP:{ screen:addreserve},
     貸款諮詢:{ screen:reserve},
     還款資訊:{screen:repayment},

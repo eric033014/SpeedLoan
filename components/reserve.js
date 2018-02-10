@@ -54,7 +54,8 @@ export default class reserve extends Component {
           <Right/>
         </Header>
         <Content>
-        <Card style={{ marginLeft: 15, marginRight: 15, marginTop: 15, elevation: 0, borderWidth: 1, borderRadius: 0, borderColor: 'white' }}>
+        <Card
+          style={{ marginLeft: 15, marginRight: 15, marginTop: 15, elevation: 0, borderWidth: 1, borderRadius: 0, borderColor: 'white' }}>
           <CardItem style={{ borderWidth: 0, borderRadius: 0 }} >
             <Body>
               <Text style={{ color: '#82CC7A' }} >類別</Text>
@@ -82,7 +83,8 @@ export default class reserve extends Component {
       </Content>
         <View style={{ backgroundColor: 'white' }} >
         <Button block style={{ backgroundColor: "#7ACECE",height: 45, marginLeft: 15, marginRight: 15, marginTop: 20, marginBottom: 20, elevation: 0 }}
-       onPress={this.onPressAdd}
+       //onPress={this.onPressAdd}
+       onPress={() => this.props.navigation.navigate('TEMP', { name: 'Jane' })}
         >
           <Text style={{color: "white"}} >預約貸款諮詢</Text>
         </Button>
