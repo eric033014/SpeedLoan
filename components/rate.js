@@ -7,7 +7,7 @@ import {
   View
 } from 'react-native';
 import {
-  Container, Header, Left, Body, Right, Button, Icon, Title, Content, Input
+  Container, Header, Left, Body, Right, Button, Icon, Title, Content, Form, Item, Input, Label, Picker, InputGroup
 } from 'native-base';
 var styles = StyleSheet.create({
     description: {
@@ -30,7 +30,11 @@ export default class reserve extends Component {
         title: '利率試算',
         amount: 0,
         rate: 0,
-        year: 0
+        year: 0,
+        monthly: 0,
+        yearly: 0,
+        calc: false,
+        rate_border: '#515151'
       }
     }
     static navigationOptions = {
@@ -44,6 +48,9 @@ export default class reserve extends Component {
 
     onPressAdd = () => {
         //(1＋月利率)^月數
+        this.setState({
+          calc: false
+        });
         let m = this.state.year*12;
         console.log(m);
         let m_rate = this.state.rate/1200;
@@ -53,12 +60,23 @@ export default class reserve extends Component {
         let temp1 = temp*m_rate;
         let temp2 = temp-1;
         let temp3 = temp1/temp2;
+        let monthly = Number.parseInt(temp3*this.state.amount,10)+1;
+        let yearly = monthly*m;
         console.log(temp3);
 
         //每月應繳金額
-        console.log(temp3*this.state.amount);
+        this.setState({
+          monthly: monthly
+        });
+        console.log(monthly);
         //應繳總金額
-        console.log(temp3*this.state.amount*m);
+        this.setState({
+          yearly: yearly
+        });
+        console.log(yearly);
+        this.setState({
+          calc: true
+        });
     }
 
   // constructor(props) {
@@ -81,56 +99,87 @@ export default class reserve extends Component {
           </Body>
           <Right/>
         </Header>
-             <Input
-               placeholder="請輸入您的貸款金額..."
-               keyboardType = 'numeric'
-               onBlur={ () => { this.setState({
-                 name_border: '#515151'
-               })
-               }}
-               onFocus={ () => { this.setState({
-                 name_border: '#7ACECE'
-               })
-               }}
-               value={this.state.amount}
-               onChangeText={amount => this.setState({ amount })}
+        <Content>
+          <Form style={{paddingBottom: 30, marginTop: 30}}>
+          <Item stackedLabel style={{borderColor: 'transparent', marginRight: 15}}>
+            <Label>貸款金額</Label>
+            <Input
+              placeholder="請輸入您的貸款金額..."
+              keyboardType = 'numeric'
+              onBlur={ () => { this.setState({
+                amount_border: '#515151'
+              })
+              }}
+              onFocus={ () => { this.setState({
+                amount_border: '#7ACECE'
+              })
+              }}
+              value={this.state.amount}
+              onChangeText={amount => this.setState({ amount })}
+              style={{ borderBottomWidth: 1, borderBottomColor: this.state.amount_border }} />
+          </Item>
+          <Item stackedLabel style={{borderColor: 'transparent', marginRight: 15}}>
+            <Label>貸款年限</Label>
+            <Input
+              placeholder="請輸入您的貸款年限..."
+              keyboardType = 'numeric'
+              onBlur={ () => { this.setState({
+                year_border: '#515151'
+              })
+              }}
+              onFocus={ () => { this.setState({
+                year_border: '#7ACECE'
+              })
+              }}
+              value={this.state.year}
+              onChangeText={year => this.setState({ year })}
+              style={{ borderBottomWidth: 1, borderBottomColor: this.state.year_border }} />
+          </Item>
+          <Item stackedLabel style={{borderColor: 'transparent', marginRight: 15}}>
+              <Label>貸款利率</Label>
+              <InputGroup iconRight style={{ paddingLeft: 0, borderBottomWidth: 1, borderBottomColor: this.state.rate_border  }} >
+            <Input
+              placeholder="請輸入您的貸款利率(%)..."
+              keyboardType = 'numeric'
+              onBlur={ () => { this.setState({
+                rate_border: '#515151'
+              })
+              }}
+              onFocus={ () => { this.setState({
+                rate_border: '#7ACECE'
+              })
+              }}
+              value={this.state.rate}
+              onChangeText={rate => this.setState({ rate })}
+               />
+              <Icon type="FontAwesome" name='percent' style={{ fontSize:15, color: this.state.rate_border }} />
 
-               style={{ borderBottomWidth: 1, borderBottomColor: this.state.name_border }} />
-               <Input
-                 placeholder="請輸入您的貸款年限..."
-                 keyboardType = 'numeric'
-                 onBlur={ () => { this.setState({
-                   name_border: '#515151'
-                 })
-                 }}
-                 onFocus={ () => { this.setState({
-                   name_border: '#7ACECE'
-                 })
-                 }}
-                 value={this.state.year}
-                 onChangeText={year => this.setState({ year })}
+          </InputGroup>
 
-                 style={{ borderBottomWidth: 1, borderBottomColor: this.state.name_border }} />
-               <Input
-                 placeholder="請輸入您的貸款利率..."
-                 keyboardType = 'numeric'
-                 onBlur={ () => { this.setState({
-                   name_border: '#515151'
-                 })
-                 }}
-                 onFocus={ () => { this.setState({
-                   name_border: '#7ACECE'
-                 })
-                 }}
-                 value={this.state.rate}
-                 onChangeText={rate => this.setState({ rate })}
-
-                 style={{ borderBottomWidth: 1, borderBottomColor: this.state.name_border }} />
+          </Item>
+          { this.state.calc &&
+            <Item style={{borderColor: 'transparent', marginRight: 15, marginTop: 15}}>
+            <Label>每月應繳金額</Label>
+            <Right>
+            <Label style={{fontSize: 30}}><Label style={{fontSize: 10}} >NTD</Label> {this.state.monthly}</Label>
+            </Right>
+            </Item>
+          }
+          { this.state.calc &&
+            <Item style={{borderColor: 'transparent', marginRight: 15, marginTop: 15}}>
+            <Label>每年應繳金額</Label>
+            <Right>
+            <Label style={{fontSize: 30}}><Label style={{fontSize: 10}} >NTD</Label> {this.state.yearly}</Label>
+            </Right>
+            </Item>
+          }
+          </Form>
+        </Content>
 
                  <Button block style={{ backgroundColor: "#7ACECE",height: 45, marginLeft: 15, marginRight: 15, marginBottom: 30, elevation: 0 }}
                 onPress={this.onPressAdd}
                  >
-                   <Text style={{color: "white"}} >確定</Text>
+                   <Text style={{color: "white"}} >開始計算</Text>
                  </Button>
 
         </Container>

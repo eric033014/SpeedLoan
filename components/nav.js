@@ -6,6 +6,9 @@ import profile from './profile.js'
 import rate from './rate.js'
 import repayment from './repayment.js'
 import login from './login.js'
+import addreserve from './addreserve.js'
+import reserve_detail from './reserve_detail.js'
+
 import {
   DrawerNavigator,
   DrawerItems

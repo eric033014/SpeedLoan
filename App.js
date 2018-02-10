@@ -93,8 +93,8 @@ export default class App extends Component {
     }
     onLoginSuccess() {
         this.setState({
-            email: '',
-            password: '',
+            email: 'eric0330eric@gmail.com',
+            password: 'ricky42613',
             loading: false,
             error: 'Success',
             login: true,
@@ -117,7 +117,7 @@ export default class App extends Component {
         return (
           <Container style={{backgroundColor:"#3C3C3C"}}>
           <Content>
-          <Form>
+          <Form style={{paddingTop: 60}}>
             <Item style={{borderColor: 'transparent', marginRight: 15, alignItems: 'center', justifyContent: 'center'}}>
             <Image
             style = {{ width: 65, height: 103, alignItems: 'center' }}
@@ -167,13 +167,13 @@ export default class App extends Component {
             </Label>
             </Item>
           </Form>
-          <Button block onPress={this.onButtonPress.bind(this)} style={{ backgroundColor: "#7ACECE",height: 45, marginLeft: 15, marginRight: 15, marginTop: 30, elevation: 0 }}>
+          </Content>
+          <Button block onPress={this.onButtonPress.bind(this)} style={{ backgroundColor: "#7ACECE",height: 45, marginLeft: 15, marginRight: 15, elevation: 0 }}>
             <Text style={{color: "#3C3C3C"}} >登入</Text>
           </Button>
-          <Button block onPress={this.onButtonPress.bind(this)} style={{ backgroundColor: "transparent",borderColor: "#7ACECE", borderWidth: 2 ,height: 45, marginLeft: 15, marginRight: 15, marginTop: 15, elevation: 0 }}>
+          <Button block onPress={this.onButtonPress.bind(this)} style={{ backgroundColor: "transparent",borderColor: "#7ACECE", borderWidth: 2 ,height: 45, marginLeft: 15, marginRight: 15, marginTop: 15, elevation: 0, marginBottom: 30 }}>
             <Text style={{color: "#7ACECE"}} >註冊</Text>
           </Button>
-          </Content>
           </Container>
         );
       }

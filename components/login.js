@@ -84,7 +84,7 @@ export default class login extends Component {
           <Header style={{backgroundColor:"#3C3C3C", elevation: 0}} androidStatusBarColor="#282828" />
           <Content>
           <Form>
-            <Item style={{borderColor: 'transparent', marginRight: 15, alignItems: 'center', justifyContent: 'center'}}>
+            <Item style={{paddingTop: 100,borderColor: 'transparent', marginRight: 15, alignItems: 'center', justifyContent: 'center'}}>
             <Image
             style = {{ width: 65, height: 103, alignItems: 'center' }}
             source = {require('../assets/img/login_logo.png')} />
