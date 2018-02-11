@@ -38,13 +38,14 @@ export default class reserve extends Component {
         <Icon type='Entypo' name="message" style={{ fontSize: 20 , color: tintColor }}  />
       )
     }
-    itemClick() {
-      this.props.navigation.navigate('reserve_detail');
-    }
+    // itemClick() {
+    //   this.props.navigation.navigate('reserve_detail');
+    // }
     componentDidMount() {
       var userid = this.state.userid;
       var parent = this;
       this.props.screenProps.database().ref('/reserve').once("value").then(function(snapshot) {
+        detail=[];
         snapshot.forEach(function(temp){
           console.log(temp.val().name);
 
@@ -53,7 +54,7 @@ export default class reserve extends Component {
             detail.push(
               <Card style={{ marginLeft: 15, marginRight: 15, marginTop: 10, elevation: 0, borderWidth: 1, borderRadius: 0, borderColor: 'white' }}>
                 <CardItem button onPress={() =>
-                  parent.props.navigation.navigate('reserve_detail')
+                  parent.props.navigation.navigate('reserve_detail',{category:temp.val().category,name:temp.val().name,purpose:temp.val().purpose,date1:temp.val().date1,city1:temp.val().city1,area1:temp.val().area1,money:temp.val().need_money,year:temp.val().year,date2:temp.val().date2,city2:temp.val().city2,area2:temp.val().area2,date3:temp.val().date3,city3:temp.val().city3,area3:temp.val().area3})
                 } style={{ borderWidth: 0, borderRadius: 0 }} >
                   <Body>
                     <Text style={{ color: '#82CC7A' }} >{temp.val().category}</Text>

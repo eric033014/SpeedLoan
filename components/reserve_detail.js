@@ -27,9 +27,12 @@ export default class reserve_detail extends Component {
   constructor(props) {
       super(props);
       this.state = {
-        title: '2018/01/26 18:00'
+        title: '貸款諮詢細節'
       }
     }
+  // componentWillMount(){
+  //
+  // }
     onValueChange_loan_category(value: string) {
       this.setState({
         loan_category: value
@@ -61,6 +64,7 @@ export default class reserve_detail extends Component {
   }
  render() {
    const { title } = this.state;
+   //console.log("xxx "+this.props.navigation.state.params.test);
    return (
      <Container>
      <Header style={{backgroundColor:"#3C3C3C"}} androidStatusBarColor="#282828">
@@ -78,29 +82,34 @@ export default class reserve_detail extends Component {
        <Content>
        <Form style={{borderColor: 'transparent', marginRight: 15, marginTop: 30}}>
          <Item style={{borderColor: 'transparent', marginRight: 15}}><Label style={{ color:'gray' }}>申請貸款類別</Label></Item>
-         <Item style={{borderColor: 'transparent', marginRight: 15, marginTop: 0}}><Label>貸款類別</Label></Item>
+         <Item style={{borderColor: 'transparent', marginRight: 15, marginTop: 0}}><Label>{this.props.navigation.state.params.category}</Label></Item>
          <Item style={{borderColor: 'transparent', marginRight: 15, marginTop: 10}}></Item>
          <Item style={{borderColor: 'transparent', marginRight: 15}}><Label style={{ color:'gray' }}>需貸款金額</Label></Item>
-         <Item style={{borderColor: 'transparent', marginRight: 15, marginTop: 0}}><Label>NTD 1,000,000</Label></Item>
+         <Item style={{borderColor: 'transparent', marginRight: 15, marginTop: 0}}><Label>{this.props.navigation.state.params.money}</Label></Item>
          <Item style={{borderColor: 'transparent', marginRight: 15, marginTop: 10}}></Item>
          <Item style={{borderColor: 'transparent', marginRight: 15}}><Label style={{ color:'gray' }}>目的</Label></Item>
-         <Item style={{borderColor: 'transparent', marginRight: 15, marginTop: 0}}><Label>請輸入貸款目的</Label></Item>
-         <Item style={{borderColor: 'transparent', marginRight: 15, marginTop: 10}}></Item>
-         <Item style={{borderColor: 'transparent', marginRight: 15}}><Label style={{ color:'gray' }}>區域</Label></Item>
-         <Item style={{borderColor: 'transparent', marginRight: 15, marginTop: 0}}><Label>北部</Label></Item>
-         <Item style={{borderColor: 'transparent', marginRight: 15, marginTop: 10}}></Item>
-         <Item style={{borderColor: 'transparent', marginRight: 15}}><Label style={{ color:'gray' }}>事務所名</Label></Item>
-         <Item style={{borderColor: 'transparent', marginRight: 15, marginTop: 0}}><Label>請輸入事務所名</Label></Item>
+         <Item style={{borderColor: 'transparent', marginRight: 15, marginTop: 0}}><Label>{this.props.navigation.state.params.purpose}</Label></Item>
          <Item style={{borderColor: 'transparent', marginRight: 15, marginTop: 10}}></Item>
          <Item style={{borderColor: 'transparent', marginRight: 15}}><Label style={{ color:'gray' }}>還款年限</Label></Item>
-         <Item style={{borderColor: 'transparent', marginRight: 15, marginTop: 0}}><Label>北部</Label></Item>
+         <Item style={{borderColor: 'transparent', marginRight: 15, marginTop: 0}}><Label>{this.props.navigation.state.params.year}</Label></Item>
          <Item style={{borderColor: 'transparent', marginRight: 15, marginTop: 10}}></Item>
-         <Item style={{borderColor: 'transparent', marginRight: 15}}><Label style={{ color:'gray' }}>信用卡</Label></Item>
-         <Item style={{borderColor: 'transparent', marginRight: 15, marginTop: 0}}><Label>北部</Label></Item>
+         <Item style={{borderColor: 'transparent', marginRight: 15}}><Label style={{ color:'gray' }}>預約區域1</Label></Item>
+         <Item style={{borderColor: 'transparent', marginRight: 15, marginTop: 0}}><Label>{this.props.navigation.state.params.city1},{this.props.navigation.state.params.area1}</Label></Item>
          <Item style={{borderColor: 'transparent', marginRight: 15, marginTop: 10}}></Item>
-         <Item style={{borderColor: 'transparent', marginRight: 15}}><Label style={{ color:'gray' }}>地點</Label></Item>
-         <Item style={{borderColor: 'transparent', marginRight: 15, marginTop: 0}}><Label>北部</Label></Item>
-
+         <Item style={{borderColor: 'transparent', marginRight: 15}}><Label style={{ color:'gray' }}>預約時間1</Label></Item>
+         <Item style={{borderColor: 'transparent', marginRight: 15, marginTop: 0}}><Label>{this.props.navigation.state.params.date1}</Label></Item>
+         <Item style={{borderColor: 'transparent', marginRight: 15, marginTop: 10}}></Item>
+         <Item style={{borderColor: 'transparent', marginRight: 15}}><Label style={{ color:'gray' }}>預約區域2</Label></Item>
+         <Item style={{borderColor: 'transparent', marginRight: 15, marginTop: 0}}><Label>{this.props.navigation.state.params.city2},{this.props.navigation.state.params.area2}</Label></Item>
+         <Item style={{borderColor: 'transparent', marginRight: 15, marginTop: 10}}></Item>
+         <Item style={{borderColor: 'transparent', marginRight: 15}}><Label style={{ color:'gray' }}>預約時間2</Label></Item>
+         <Item style={{borderColor: 'transparent', marginRight: 15, marginTop: 0}}><Label>{this.props.navigation.state.params.date2}</Label></Item>
+         <Item style={{borderColor: 'transparent', marginRight: 15, marginTop: 10}}></Item>
+         <Item style={{borderColor: 'transparent', marginRight: 15}}><Label style={{ color:'gray' }}>預約區域3</Label></Item>
+         <Item style={{borderColor: 'transparent', marginRight: 15, marginTop: 0}}><Label>{this.props.navigation.state.params.city3},{this.props.navigation.state.params.area3}</Label></Item>
+         <Item style={{borderColor: 'transparent', marginRight: 15, marginTop: 10}}></Item>
+         <Item style={{borderColor: 'transparent', marginRight: 15}}><Label style={{ color:'gray' }}>預約時間3</Label></Item>
+         <Item style={{borderColor: 'transparent', marginRight: 15, marginTop: 0}}><Label>{this.props.navigation.state.params.date3}</Label></Item>
 
        </Form>
        </Content>

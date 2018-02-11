@@ -35,6 +35,7 @@ export default class company_reserve extends Component {
   }
   componentWillMount() {
     this.props.screenProps.database().ref('/reserve').once("value").then(function(snapshot) {
+      detail=[];
       snapshot.forEach(function(temp){
         console.log(temp.val().name);
         detail.push(
@@ -85,7 +86,6 @@ export default class company_reserve extends Component {
   //     this.state = {};
   //   }
     render() {
-      console.log("xx");
       const { title } = this.state;
 
       if(this.state.loading){

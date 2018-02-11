@@ -56,6 +56,7 @@ export default class profile extends Component {
           income_select: snapshot.val().income,
           worked_select: snapshot.val().year,
           region_select: snapshot.val().location,
+          loading:true
         });
       }.bind(this));
   }
@@ -122,104 +123,149 @@ export default class profile extends Component {
   //   }
     render() {
       const { title } = this.state;
-      return (
-        <Container>
-        <Header style={{backgroundColor:"#3C3C3C"}} androidStatusBarColor="#282828">
-          <Left>
-            <Button transparent>
-              <Icon name='menu' style={{color:"#7ACECE"}}  onPress={()=>
-              this.props.navigation.navigate('DrawerOpen')}/>
-            </Button>
-          </Left>
-          <Body>
-          <Title>{title}</Title>
-          </Body>
-          <Right/>
-        </Header>
-   	      <Content>
-            <Label style={{marginLeft: 15,marginBottom: 15,marginTop: 30}}>嗨，您好</Label>
-            <Form style={{paddingBottom: 30}}>
-              <Item stackedLabel style={{borderColor: 'transparent', marginRight: 15}}>
-                <Label>姓名</Label>
-                <Input
-                  placeholder="請輸入您的姓名..."
-                  onBlur={ () => { this.setState({
-                    name_border: '#515151'
-                  })
-                  }}
-                  onFocus={ () => { this.setState({
-                    name_border: '#7ACECE'
-                  })
-                  }}
-                  onChangeText={
-                      (text) => {
-                          this.setState({
-                              name: text
-                          });
-                      }
-                  }
-                  value={this.state.name}
-                  style={{ borderBottomWidth: 1, borderBottomColor: this.state.name_border }} />
-              </Item>
-              <Item stackedLabel style={{borderColor: 'transparent', marginRight: 15}}>
-                <Label>聯絡方式</Label>
-                <Input
-                  placeholder="請輸入您的手機號碼或是家用電話..."
-                  keyboardType = 'numeric'
-                  onBlur={ () => { this.setState({
-                    contact_border: '#515151'
-                  })
-                  }}
-                  onFocus={ () => { this.setState({
-                    contact_border: '#7ACECE'
-                  })
-                  }}
-                  onChangeText={
-                      (text) => {
-                          this.setState({
-                              phone: text
-                          });
-                      }
-                  }
-                  value={this.state.phone.toString()}
-                  style={{ borderBottomWidth: 1, borderBottomColor: this.state.contact_border }} />
-              </Item>
-              <Item stackedLabel style={{borderColor: 'transparent', marginRight: 15}}>
-                <Label>電子信箱</Label>
-                <Input
-                  placeholder="請輸入您的電子信箱..."
-                  onBlur={ () => { this.setState({
-                    email_border: '#515151'
-                  })
-                  }}
-                  onFocus={ () => { this.setState({
-                    email_border: '#7ACECE'
-                  })
-                  }}
-                  onChangeText={
-                      (text) => {
-                          this.setState({
-                              email: text
-                          });
-                      }
-                  }
-                  value={this.state.email}
-                  style={{ borderBottomWidth: 1, borderBottomColor: this.state.email_border }} />
-              </Item>
-              <Label style={{ marginLeft: 15, marginTop: 10, fontSize: 15 }}>職業</Label>
+      if(this.state.loading){
+        return (
+          <Container>
+          <Header style={{backgroundColor:"#3C3C3C"}} androidStatusBarColor="#282828">
+            <Left>
+              <Button transparent>
+                <Icon name='menu' style={{color:"#7ACECE"}}  onPress={()=>
+                this.props.navigation.navigate('DrawerOpen')}/>
+              </Button>
+            </Left>
+            <Body>
+            <Title>{title}</Title>
+            </Body>
+            <Right/>
+          </Header>
+     	      <Content>
+              <Label style={{marginLeft: 15,marginBottom: 15,marginTop: 30}}>嗨，您好</Label>
+              <Form style={{paddingBottom: 30}}>
+                <Item stackedLabel style={{borderColor: 'transparent', marginRight: 15}}>
+                  <Label>姓名</Label>
+                  <Input
+                    placeholder="請輸入您的姓名..."
+                    onBlur={ () => { this.setState({
+                      name_border: '#515151'
+                    })
+                    }}
+                    onFocus={ () => { this.setState({
+                      name_border: '#7ACECE'
+                    })
+                    }}
+                    onChangeText={
+                        (text) => {
+                            this.setState({
+                                name: text
+                            });
+                        }
+                    }
+                    value={this.state.name}
+                    style={{ borderBottomWidth: 1, borderBottomColor: this.state.name_border }} />
+                </Item>
+                <Item stackedLabel style={{borderColor: 'transparent', marginRight: 15}}>
+                  <Label>聯絡方式</Label>
+                  <Input
+                    placeholder="請輸入您的手機號碼或是家用電話..."
+                    keyboardType = 'numeric'
+                    onBlur={ () => { this.setState({
+                      contact_border: '#515151'
+                    })
+                    }}
+                    onFocus={ () => { this.setState({
+                      contact_border: '#7ACECE'
+                    })
+                    }}
+                    onChangeText={
+                        (text) => {
+                            this.setState({
+                                phone: text
+                            });
+                        }
+                    }
+                    value={this.state.phone.toString()}
+                    style={{ borderBottomWidth: 1, borderBottomColor: this.state.contact_border }} />
+                </Item>
+                <Item stackedLabel style={{borderColor: 'transparent', marginRight: 15}}>
+                  <Label>電子信箱</Label>
+                  <Input
+                    placeholder="請輸入您的電子信箱..."
+                    onBlur={ () => { this.setState({
+                      email_border: '#515151'
+                    })
+                    }}
+                    onFocus={ () => { this.setState({
+                      email_border: '#7ACECE'
+                    })
+                    }}
+                    onChangeText={
+                        (text) => {
+                            this.setState({
+                                email: text
+                            });
+                        }
+                    }
+                    value={this.state.email}
+                    style={{ borderBottomWidth: 1, borderBottomColor: this.state.email_border }} />
+                </Item>
+                <Label style={{ marginLeft: 15, marginTop: 10, fontSize: 15 }}>職業</Label>
+                <Picker
+                mode="dropdown"
+                placeholder="請選擇您的職業..."
+                selectedValue={this.state.job_select}
+                onValueChange={this.onValueChange_job_select.bind(this)}
+                style={{ marginLeft: 15, marginRight: 15 }}
+                >
+                <Item label="請選擇您的職業..." value="key0" />
+                <Item label="財會人員" value="財會人員" />
+                <Item label="教職人員" value="教職人員" />
+                <Item label="學生" value="學生" />
+                <Item label="無業人員" value="無業人員" />
+                <Item label="服務業" value="服務業" />
+              </Picker>
+              <View
+                style={{
+                  borderBottomColor: '#515151',
+                  borderBottomWidth: 1,
+                  marginLeft: 15,
+                  marginRight: 15
+                }}
+               />
+               <Label style={{ marginLeft: 15, marginTop: 10, fontSize: 15 }}>年收入</Label>
+               <Picker
+               mode="dropdown"
+               placeholder="請選擇您的年收入..."
+               selectedValue={this.state.income_select}
+               onValueChange={this.onValueChange_income_select.bind(this)}
+               style={{ marginLeft: 15, marginRight: 15 }}
+               >
+               <Item label="<25w" value="250000" />
+               <Item label="26W ~ 50W" value="500000" />
+               <Item label="51W ~ 75W" value="750000" />
+               <Item label="76W ~ 100W" value="1000000" />
+               <Item label=">100W" value="1000000up" />
+             </Picker>
+             <View
+               style={{
+                 borderBottomColor: '#515151',
+                 borderBottomWidth: 1,
+                 marginLeft: 15,
+                 marginRight: 15
+               }}
+              />
+              <Label style={{ marginLeft: 15, marginTop: 10, fontSize: 15 }}>所在地</Label>
               <Picker
               mode="dropdown"
-              placeholder="請選擇您的職業..."
-              selectedValue={this.state.job_select}
-              onValueChange={this.onValueChange_job_select.bind(this)}
+              placeholder="請選擇您的所在地..."
+              selectedValue={this.state.region_select}
+              onValueChange={this.onValueChange_region_select.bind(this)}
               style={{ marginLeft: 15, marginRight: 15 }}
               >
-              <Item label="請選擇您的職業..." value="key0" />
-              <Item label="財會人員" value="財會人員" />
-              <Item label="教職人員" value="教職人員" />
-              <Item label="學生" value="學生" />
-              <Item label="無業人員" value="無業人員" />
-              <Item label="服務業" value="服務業" />
+              <Item label="北部地區" value="key0" />
+              <Item label="中部地區" value="key1" />
+              <Item label="南部地區" value="key2" />
+              <Item label="東部地區" value="key3" />
+              <Item label="離島地區" value="key4" />
             </Picker>
             <View
               style={{
@@ -229,19 +275,19 @@ export default class profile extends Component {
                 marginRight: 15
               }}
              />
-             <Label style={{ marginLeft: 15, marginTop: 10, fontSize: 15 }}>年收入</Label>
+             <Label style={{ marginLeft: 15, marginTop: 10, fontSize: 15 }}>年資</Label>
              <Picker
              mode="dropdown"
-             placeholder="請選擇您的年收入..."
-             selectedValue={this.state.income_select}
-             onValueChange={this.onValueChange_income_select.bind(this)}
+             placeholder="請選擇您的年資..."
+             selectedValue={this.state.worked_select}
+             onValueChange={this.onValueChange_worked_select.bind(this)}
              style={{ marginLeft: 15, marginRight: 15 }}
              >
-             <Item label="<25w" value="250000" />
-             <Item label="26W ~ 50W" value="500000" />
-             <Item label="51W ~ 75W" value="750000" />
-             <Item label="76W ~ 100W" value="1000000" />
-             <Item label=">100W" value="1000000up" />
+             <Item label="<3yr" value="key0" />
+             <Item label="3yr ~ 5yr" value="key1" />
+             <Item label="6yr ~ 10yr" value="key2" />
+             <Item label="11yr ~ 15yr" value="key3" />
+             <Item label=">15yr" value="key4" />
            </Picker>
            <View
              style={{
@@ -251,59 +297,18 @@ export default class profile extends Component {
                marginRight: 15
              }}
             />
-            <Label style={{ marginLeft: 15, marginTop: 10, fontSize: 15 }}>所在地</Label>
-            <Picker
-            mode="dropdown"
-            placeholder="請選擇您的所在地..."
-            selectedValue={this.state.region_select}
-            onValueChange={this.onValueChange_region_select.bind(this)}
-            style={{ marginLeft: 15, marginRight: 15 }}
-            >
-            <Item label="北部地區" value="key0" />
-            <Item label="中部地區" value="key1" />
-            <Item label="南部地區" value="key2" />
-            <Item label="東部地區" value="key3" />
-            <Item label="離島地區" value="key4" />
-          </Picker>
-          <View
-            style={{
-              borderBottomColor: '#515151',
-              borderBottomWidth: 1,
-              marginLeft: 15,
-              marginRight: 15
-            }}
-           />
-           <Label style={{ marginLeft: 15, marginTop: 10, fontSize: 15 }}>年資</Label>
-           <Picker
-           mode="dropdown"
-           placeholder="請選擇您的年資..."
-           selectedValue={this.state.worked_select}
-           onValueChange={this.onValueChange_worked_select.bind(this)}
-           style={{ marginLeft: 15, marginRight: 15 }}
-           >
-           <Item label="<3yr" value="key0" />
-           <Item label="3yr ~ 5yr" value="key1" />
-           <Item label="6yr ~ 10yr" value="key2" />
-           <Item label="11yr ~ 15yr" value="key3" />
-           <Item label=">15yr" value="key4" />
-         </Picker>
-         <View
-           style={{
-             borderBottomColor: '#515151',
-             borderBottomWidth: 1,
-             marginLeft: 15,
-             marginRight: 15
-           }}
-          />
-            </Form>
-            <Button block style={{ backgroundColor: "#7ACECE",height: 45, marginLeft: 15, marginRight: 15, marginBottom: 30, elevation: 0 }}
-           onPress={this.onPressAdd}
-            >
-              <Text style={{color: "white"}} >更新</Text>
-            </Button>
-          </Content>
-        </Container>
+              </Form>
+              <Button block style={{ backgroundColor: "#7ACECE",height: 45, marginLeft: 15, marginRight: 15, marginBottom: 30, elevation: 0 }}
+             onPress={this.onPressAdd}
+              >
+                <Text style={{color: "white"}} >更新</Text>
+              </Button>
+            </Content>
+          </Container>
 
-      );
+        );
+      } else {
+        return null;
+      }
     }
 }
