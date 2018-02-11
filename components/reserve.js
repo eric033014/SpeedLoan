@@ -7,7 +7,7 @@ import {
   View
 } from 'react-native';
 import {
-  Container, Header, Left, Body, Right, Button, Icon, Title, Content, Card, CardItem, Label
+  Container, Header, Left, Body, Right, Button, Icon, Title, Content, Card, CardItem, Label,Segment
 } from 'native-base';
 var styles = StyleSheet.create({
     description: {
@@ -20,25 +20,66 @@ var styles = StyleSheet.create({
         alignItems: 'center'
     }
 });
+var detail=[];
 
 export default class reserve extends Component {
   constructor(props) {
       super(props);
       this.state = {
-        title: '貸款諮詢'
+        title: '貸款諮詢',
+        loading:false,
+        userid :this.props.screenProps.auth().currentUser.uid,
+
       }
+      console.log("con");
     }
     static navigationOptions = {
       drawerIcon: ({ tintColor }) => (
         <Icon type='Entypo' name="message" style={{ fontSize: 20 , color: tintColor }}  />
       )
     }
+    componentDidMount() {
+      var userid = this.state.userid;
+      this.props.screenProps.database().ref('/reserve').once("value").then(function(snapshot) {
+        snapshot.forEach(function(temp){
+          console.log(temp.val().name);
+
+          if(temp.val().account_id == userid){
+
+            detail.push(
+              <Card style={{ marginLeft: 15, marginRight: 15, marginTop: 10, elevation: 0, borderWidth: 1, borderRadius: 0, borderColor: 'white' }}>
+                <CardItem style={{ borderWidth: 0, borderRadius: 0 }} >
+                  <Body>
+                    <Text style={{ color: '#82CC7A' }} >{temp.val().category}</Text>
+                    <Text style={{ color: '#3C3C3C' }} >{temp.val().name}</Text>
+                  </Body>
+                  <Right>
+                  <Text style={{ color: '#7ACECE' }} >{temp.val().date1}</Text>
+                  <Text>{temp.val().city1},{temp.val().area1}</Text>
+                  </Right>
+                 </CardItem>
+               </Card>
+          );
+        }
+          console.log("detail: "+detail[0]);
+
+        }.bind(this));
+        console.log("detail1: "+detail[0]);
+      }).then(function(){
+        this.setState({
+          loading:true
+        });
+        console.log("detail2: "+detail[0]);
+      }.bind(this));
+    }
   // constructor(props) {
   //     super(props);
   //     this.state = {};
   //   }
-    render() {
-      const { title } = this.state;
+  render() {
+    const { title } = this.state;
+
+    if(this.state.loading){
       return (
         <Container style={{ backgroundColor: '#EFEFEF' }} >
         <Header style={{backgroundColor:"#3C3C3C"}} androidStatusBarColor="#282828">
@@ -53,44 +94,51 @@ export default class reserve extends Component {
           </Body>
           <Right/>
         </Header>
+        <Segment style={{ marginTop: 15, backgroundColor: "transparent"  }}>
+            <Button
+              style={{
+                backgroundColor: this.state.seg === 1 ? "#3C3C3C" : undefined,
+                borderColor: "#3C3C3C",
+              }}
+              first
+              active={this.state.seg === 1 ? true : false}
+              onPress={() => this.setState({ seg: 1 })}
+            >
+              <Text style={{ color: this.state.seg === 1 ? "#FFF" : "#3C3C3C" }}>未分配</Text>
+            </Button>
+            <Button
+              style={{
+                backgroundColor: this.state.seg === 2 ? "#3C3C3C" : undefined,
+                borderColor: "#3C3C3C",
+              }}
+              active={this.state.seg === 2 ? true : false}
+              onPress={() => this.setState({ seg: 2 })}
+            >
+              <Text style={{ color: this.state.seg === 2 ? "#FFF" : "#3C3C3C" }}>已分配</Text>
+            </Button>
+            <Button
+              last
+              style={{
+                backgroundColor: this.state.seg === 3 ? "#3C3C3C" : undefined,
+                borderColor: "#3C3C3C",
+              }}
+              active={this.state.seg === 3 ? true : false}
+              onPress={() => this.setState({ seg: 3 })}
+            >
+              <Text style={{ color: this.state.seg === 3 ? "#FFF" : "#3C3C3C" }}>歷史紀錄</Text>
+            </Button>
+        </Segment>
         <Content>
-        <Card
-          style={{ marginLeft: 15, marginRight: 15, marginTop: 15, elevation: 0, borderWidth: 1, borderRadius: 0, borderColor: 'white' }}>
-          <CardItem style={{ borderWidth: 0, borderRadius: 0 }} >
-            <Body>
-              <Text style={{ color: '#82CC7A' }} >類別</Text>
-              <Text style={{ color: '#3C3C3C' }} >事務所</Text>
-            </Body>
-            <Right>
-            <Text style={{ color: '#7ACECE' }} >今日18:30</Text>
-            <Text>台北市,文山區</Text>
-            </Right>
-           </CardItem>
-         </Card>
-         <Card style={{ marginLeft: 15, marginRight: 15, marginTop: 15, elevation: 0, borderWidth: 1, borderRadius: 0, borderColor: 'white' }}>
-           <CardItem style={{ borderWidth: 0, borderRadius: 0 }} >
-             <Body>
-               <Text style={{ color: '#82CC7A' }} >類別</Text>
-               <Text style={{ color: '#3C3C3C' }} >事務所</Text>
-             </Body>
-             <Right>
-             <Text style={{ color: '#7ACECE' }} >今日18:30</Text>
-             <Text>台北市,文山區</Text>
-             </Right>
-            </CardItem>
-          </Card>
+
+
+        {detail}
 
       </Content>
-        <View style={{ backgroundColor: 'white' }} >
-        <Button block style={{ backgroundColor: "#7ACECE",height: 45, marginLeft: 15, marginRight: 15, marginTop: 20, marginBottom: 20, elevation: 0 }}
-       //onPress={this.onPressAdd}
-       onPress={() => this.props.navigation.navigate('TEMP', { name: 'Jane' })}
-        >
-          <Text style={{color: "white"}} >預約貸款諮詢</Text>
-        </Button>
-        </View>
         </Container>
 
       );
+    } else{
+      return null;
     }
+  }
 }
