@@ -8,6 +8,7 @@ import repayment from './repayment.js'
 import login from './login.js'
 import addreserve from './addreserve.js'
 import reserve_detail from './reserve_detail.js'
+import loan_intro from './loan_intro.js'
 
 import {
   DrawerNavigator,
@@ -65,7 +66,7 @@ const nav = DrawerNavigator(
     reserve_detail:{ screen:reserve_detail},
     TEMP:{ screen:addreserve},
     貸款諮詢:{ screen:reserve},
-    還款資訊:{screen:repayment},
+    貸款說明:{screen:loan_intro},
     利率試算:{screen:rate},
     個人資訊:{ screen:profile},
 

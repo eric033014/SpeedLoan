@@ -100,7 +100,8 @@ export default class reserve extends Component {
           <Right/>
         </Header>
         <Content>
-          <Form style={{paddingBottom: 30, marginTop: 30}}>
+          <Label style={{marginLeft: 15,marginBottom: 15,marginTop: 30}}>以本息平均攤還法</Label>
+          <Form style={{paddingBottom: 30, marginTop: 0}}>
           <Item stackedLabel style={{borderColor: 'transparent', marginRight: 15}}>
             <Label>貸款金額</Label>
             <Input
