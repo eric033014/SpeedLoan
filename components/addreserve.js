@@ -247,11 +247,9 @@ export default class addreserve extends Component {
     }
     _onChange = (formData) => console.log(JSON.stringify(formData, null, " "));
 
-  /* static navigationOptions = {
-      drawerIcon: ({ tintColor }) => (
-        <Icon type='Entypo' name="message" style={{ fontSize: 20 , color: tintColor }}  />
-      )
-    }*/
+   static navigationOptions = {
+      drawerLabel: () => null
+    }
   // constructor(props) {
   //     super(props);
   //     this.state = {};
@@ -264,7 +262,7 @@ export default class addreserve extends Component {
           <Left>
             <Button transparent>
               <Icon type="Ionicons" name='md-arrow-back' style={{color:"#7ACECE"}}  onPress={()=>
-              this.props.navigation.navigate('DrawerOpen')}/>
+              this.props.navigation.navigate('貸款諮詢')}/>
             </Button>
           </Left>
           <Body>

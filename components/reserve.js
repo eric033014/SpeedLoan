@@ -7,7 +7,7 @@ import {
   View
 } from 'react-native';
 import {
-  Container, Header, Left, Body, Right, Button, Icon, Title, Content, Card, CardItem, Label,Segment
+  Container, Header, Left, Body, Right, Button, Icon, Title, Content, Card, CardItem, Label, Segment, Fab
 } from 'native-base';
 var styles = StyleSheet.create({
     description: {
@@ -38,8 +38,12 @@ export default class reserve extends Component {
         <Icon type='Entypo' name="message" style={{ fontSize: 20 , color: tintColor }}  />
       )
     }
+    itemClick() {
+      this.props.navigation.navigate('reserve_detail');
+    }
     componentDidMount() {
       var userid = this.state.userid;
+      var parent = this;
       this.props.screenProps.database().ref('/reserve').once("value").then(function(snapshot) {
         snapshot.forEach(function(temp){
           console.log(temp.val().name);
@@ -48,7 +52,9 @@ export default class reserve extends Component {
 
             detail.push(
               <Card style={{ marginLeft: 15, marginRight: 15, marginTop: 10, elevation: 0, borderWidth: 1, borderRadius: 0, borderColor: 'white' }}>
-                <CardItem style={{ borderWidth: 0, borderRadius: 0 }} >
+                <CardItem button onPress={() =>
+                  parent.props.navigation.navigate('reserve_detail')
+                } style={{ borderWidth: 0, borderRadius: 0 }} >
                   <Body>
                     <Text style={{ color: '#82CC7A' }} >{temp.val().category}</Text>
                     <Text style={{ color: '#3C3C3C' }} >{temp.val().name}</Text>
@@ -134,6 +140,14 @@ export default class reserve extends Component {
         {detail}
 
       </Content>
+      <Fab
+          direction="up"
+          containerStyle={{ }}
+          style={{ backgroundColor: '#7ACECE' }}
+          position="bottomRight"
+          onPress={() => this.props.navigation.navigate('TEMP')}>
+          <Icon name="add" />
+        </Fab>
         </Container>
 
       );
