@@ -51,14 +51,6 @@ const instructions = Platform.select({
     'Shake or press menu button for dev menu',
 });
 
-const firebaseApp = firebase.initializeApp({
-    apiKey:'AIzaSyAyh82MrE-GGQKw75TUIDr84EnDUR64jVM',
-    authDomain:"speedloan-rrrr1234.firebaseapp.com",
-    databaseURL:"https://speedloan-rrrr1234.firebaseio.com/",
-    storageBucket:"speedloan-rrrr1234.appspot.com",
-});
-const rootRef = firebaseApp.database().ref();
-const itemsRef = rootRef.child('profile');
 
 export default class regis extends Component {
   constructor(props) {
