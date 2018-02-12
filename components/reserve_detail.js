@@ -102,23 +102,14 @@ export default class reserve_detail extends Component {
          <Item style={{borderColor: 'transparent', marginRight: 15}}><Label style={{ color:'gray' }}>還款年限</Label></Item>
          <Item style={{borderColor: 'transparent', marginRight: 15, marginTop: 0}}><Label>{this.props.navigation.state.params.year}</Label></Item>
          <Item style={{borderColor: 'transparent', marginRight: 15, marginTop: 10}}></Item>
-         <Item style={{borderColor: 'transparent', marginRight: 15}}><Label style={{ color:'gray' }}>預約區域1</Label></Item>
-         <Item style={{borderColor: 'transparent', marginRight: 15, marginTop: 0}}><Label>{this.props.navigation.state.params.city1},{this.props.navigation.state.params.area1}</Label></Item>
+         <Item style={{borderColor: 'transparent', marginRight: 15}}><Label style={{ color:'gray' }}>預約區域/時間 1</Label></Item>
+         <Item style={{borderColor: 'transparent', marginRight: 15, marginTop: 0}}><Label>{this.props.navigation.state.params.city1}, {this.props.navigation.state.params.area1}  {this.props.navigation.state.params.date1}</Label></Item>
          <Item style={{borderColor: 'transparent', marginRight: 15, marginTop: 10}}></Item>
-         <Item style={{borderColor: 'transparent', marginRight: 15}}><Label style={{ color:'gray' }}>預約時間1</Label></Item>
-         <Item style={{borderColor: 'transparent', marginRight: 15, marginTop: 0}}><Label>{this.props.navigation.state.params.date1}</Label></Item>
+         <Item style={{borderColor: 'transparent', marginRight: 15}}><Label style={{ color:'gray' }}>預約區域/時間 2</Label></Item>
+         <Item style={{borderColor: 'transparent', marginRight: 15, marginTop: 0}}><Label>{this.props.navigation.state.params.city2},{this.props.navigation.state.params.area2}  {this.props.navigation.state.params.date2}</Label></Item>
          <Item style={{borderColor: 'transparent', marginRight: 15, marginTop: 10}}></Item>
-         <Item style={{borderColor: 'transparent', marginRight: 15}}><Label style={{ color:'gray' }}>預約區域2</Label></Item>
-         <Item style={{borderColor: 'transparent', marginRight: 15, marginTop: 0}}><Label>{this.props.navigation.state.params.city2},{this.props.navigation.state.params.area2}</Label></Item>
-         <Item style={{borderColor: 'transparent', marginRight: 15, marginTop: 10}}></Item>
-         <Item style={{borderColor: 'transparent', marginRight: 15}}><Label style={{ color:'gray' }}>預約時間2</Label></Item>
-         <Item style={{borderColor: 'transparent', marginRight: 15, marginTop: 0}}><Label>{this.props.navigation.state.params.date2}</Label></Item>
-         <Item style={{borderColor: 'transparent', marginRight: 15, marginTop: 10}}></Item>
-         <Item style={{borderColor: 'transparent', marginRight: 15}}><Label style={{ color:'gray' }}>預約區域3</Label></Item>
-         <Item style={{borderColor: 'transparent', marginRight: 15, marginTop: 0}}><Label>{this.props.navigation.state.params.city3},{this.props.navigation.state.params.area3}</Label></Item>
-         <Item style={{borderColor: 'transparent', marginRight: 15, marginTop: 10}}></Item>
-         <Item style={{borderColor: 'transparent', marginRight: 15}}><Label style={{ color:'gray' }}>預約時間3</Label></Item>
-         <Item style={{borderColor: 'transparent', marginRight: 15, marginTop: 0}}><Label>{this.props.navigation.state.params.date3}</Label></Item>
+         <Item style={{borderColor: 'transparent', marginRight: 15}}><Label style={{ color:'gray' }}>預約區域/時間 3</Label></Item>
+         <Item style={{borderColor: 'transparent', marginRight: 15, marginTop: 0}}><Label>{this.props.navigation.state.params.city3},{this.props.navigation.state.params.area3}  {this.props.navigation.state.params.date3}</Label></Item>
 
        </Form>
        </Content>

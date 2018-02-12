@@ -56,8 +56,13 @@ export default class company_profile extends Component {
             job_select: snapshot.val().job,
             worked_select: snapshot.val().year,
             region_select: snapshot.val().location,
+            loading: true
           });
-        }
+      } else {
+          this.setState({
+              loading: true
+          });
+      }
       }.bind(this));
   }
 
@@ -254,7 +259,7 @@ export default class company_profile extends Component {
             <Button block style={{ backgroundColor: "#7ACECE",height: 45, marginLeft: 15, marginRight: 15, marginBottom: 30, elevation: 0 }}
            onPress={this.onPressAdd}
             >
-              <Text style={{color: "white"}} >確定</Text>
+              <Text style={{color: "white"}} >更新</Text>
             </Button>
           </Content>
         </Container>
