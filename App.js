@@ -74,7 +74,8 @@ export default class App extends Component {
         login:false,
         user_border: '#FFFFFF',
         password_border: '#FFFFFF',
-        showregis: false
+        showregis: false,
+        iscompony: '1'
       };
 
     }
