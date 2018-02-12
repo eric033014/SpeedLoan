@@ -19,9 +19,6 @@ import {
 
 
 import firebase from 'firebase';
-var Nav = require('./components/nav.js');
-var CompanyNav = require('./components/companynav.js')
-var Main_header = require('./components/header.js');
 
 const styles = StyleSheet.create({
   container: {
@@ -63,7 +60,7 @@ const firebaseApp = firebase.initializeApp({
 const rootRef = firebaseApp.database().ref();
 const itemsRef = rootRef.child('profile');
 
-export default class App extends Component {
+export default class regis extends Component {
   constructor(props) {
       super(props);
       this.state = {
@@ -147,12 +144,15 @@ export default class App extends Component {
         iscompany: value
       });
     }
+    static navigationOptions = {
+      drawerLabel: () => null
+    }
   render(){
       if(this.state.login){
         if(this.state.checkcompony == '0'){
-          return <Nav screenProps={firebase}/>;
+          return;
         } else{
-          return <CompanyNav screenProps={firebase}/>;
+          return;
         }
       } else{
         return (
@@ -162,7 +162,7 @@ export default class App extends Component {
             <Item style={{borderColor: 'transparent', marginRight: 15, alignItems: 'center', justifyContent: 'center'}}>
             <Image
             style = {{ width: 65, height: 103, alignItems: 'center' }}
-            source = {require('./assets/img/login_logo.png')} />
+            source = {require('../assets/img/login_logo.png')} />
             </Item>
             <Item style={{borderColor: 'transparent', marginRight: 15, marginTop: 30, marginBottom: 10, alignItems: 'center', justifyContent: 'center'}}>
             <Label style={{ color: 'white', fontSize: 20}}>
@@ -207,27 +207,32 @@ export default class App extends Component {
               {this.state.error}
             </Label>
             </Item>
+            <Label style={{ marginLeft: 15, marginTop: 10, fontSize: 15 }}>欲申請資格</Label>
+            <Picker
+            mode="dropdown"
+            placeholder="請選擇申請資格..."
+            selectedValue={this.state.iscompany}
+            onValueChange={this.onValueChange_iscompany.bind(this)}
+            style={{ marginLeft: 15, marginRight: 15 }}
+            >
+            <Item label="請選擇資格..." value='0' />
+            <Item label="會員" value='0' />
+            <Item label="事務所" value='1' />
+          </Picker>
+          <View
+            style={{
+              borderBottomColor: '#515151',
+              borderBottomWidth: 1,
+              marginLeft: 15,
+              marginRight: 15
+            }}
+           />
           </Form>
           </Content>
-          <Button block onPress={this.onButtonPress.bind(this)} style={{ backgroundColor: "#7ACECE",height: 45, marginLeft: 15, marginRight: 15, elevation: 0 }}>
-            <Text style={{color: "#3C3C3C"}} >登入</Text>
-          </Button>
-          <Button block onPress={()=>
-          this.props.navigation.navigate('REGIS')} style={{ backgroundColor: "transparent",borderColor: "#7ACECE", borderWidth: 2 ,height: 45, marginLeft: 15, marginRight: 15, marginTop: 15, elevation: 0, marginBottom: 30 }}>
+          <Button block onPress={this.onCreateButtonPress.bind(this)} style={{ backgroundColor: "transparent",borderColor: "#7ACECE", borderWidth: 2 ,height: 45, marginLeft: 15, marginRight: 15, marginTop: 15, elevation: 0, marginBottom: 30 }}>
             <Text style={{color: "#7ACECE"}} >註冊</Text>
           </Button>
-          <Label style={{ marginLeft: 15, marginTop: 10, fontSize: 15 }}>欲申請資格</Label>
-          <Picker
-          mode="dropdown"
-          placeholder="請選擇申請資格..."
-          selectedValue={this.state.iscompany}
-          onValueChange={this.onValueChange_iscompany.bind(this)}
-          style={{ marginLeft: 15, marginRight: 15 }}
-          >
-          <Item label="請選擇資格..." value='0' />
-          <Item label="會員" value='0' />
-          <Item label="事務所" value='1' />
-        </Picker>
+
           </Container>
         );
       }

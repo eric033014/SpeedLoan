@@ -11,6 +11,7 @@ import reserve_detail from './reserve_detail.js'
 import loan_intro from './loan_intro.js'
 import advertisement from './advertisement.js'
 import chatroom from './chatroom.js'
+import REGIS from './regis.js'
 
 import {
   DrawerNavigator,
@@ -67,6 +68,7 @@ const nav = DrawerNavigator(
   {
     reserve_detail:{ screen:reserve_detail},
     TEMP:{ screen:addreserve},
+    REGIS:{ screen:REGIS},
     貸款諮詢:{ screen:reserve},
     貸款說明:{screen:loan_intro},
     利率試算:{screen:rate},
