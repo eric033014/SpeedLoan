@@ -81,14 +81,14 @@ export default class App extends Component {
     }
     onCreateButtonPress(){
       console.log("create");
-      const { email, password } = this.state;
+      var { email, password } = this.state;
       firebase.auth().createUserWithEmailAndPassword(email, password)
       .then(this.onCreateLoginSuccess.bind(this))
       .catch(this.onLoginFail.bind(this));
     }
     onButtonPress() {
         //this.setState({login: true,});
-        const { email, password } = this.state;
+        var { email, password } = this.state;
         console.log(email+" "+password);
 
           firebase.auth().signInWithEmailAndPassword(email,password)
@@ -106,31 +106,27 @@ export default class App extends Component {
     onCreateLoginSuccess() {
       console.log("login success");
         this.setState({
-            email: 'eric0330eric@gmail.com',
-            password: 'ricky42613',
             loading: false,
             error: 'Success',
             login: true,
             checkcompony: this.state.iscompany,
         });
-        const user=firebase.auth().currentUser.uid;
+        var user=firebase.auth().currentUser.uid;
         console.log(user);
         firebase.database().ref('/profile/'+user).set({
           iscompony:this.state.iscompany,
-        });
+        }).then();
 
         return (<Button title="Logout" onPress={() => firebase.auth().signOut()}></Button>);
     }
     onLoginSuccess() {
       console.log("login success");
         this.setState({
-            email: 'eric0330eric@gmail.com',
-            password: 'ricky42613',
             loading: false,
             error: 'Success',
             login: true,
         });
-        const user=firebase.auth().currentUser.uid;
+        var user=firebase.auth().currentUser.uid;
         console.log(user);
         firebase.database().ref('/profile/'+user).once("value").then(function(snapshot) {
           console.log("iscompany: "+snapshot.val().iscompony);

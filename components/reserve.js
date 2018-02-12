@@ -49,7 +49,7 @@ export default class reserve extends Component {
         snapshot.forEach(function(temp){
           console.log(temp.val().name);
 
-          if(temp.val().account_id == userid){
+          if(temp.val().account_id == userid && temp.val().account_id != null && typeof temp.val().account_id != undefined){
 
             detail.push(
               <Card style={{ marginLeft: 15, marginRight: 15, marginTop: 10, elevation: 0, borderWidth: 1, borderRadius: 0, borderColor: 'white' }}>
