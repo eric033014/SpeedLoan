@@ -77,6 +77,7 @@ export default class login extends Component {
 
   static navigationOptions = {
     tabBarLabel:'登入',
+    drawerLabel: () => null
   }
     render() {
      return (
@@ -136,7 +137,8 @@ export default class login extends Component {
           <Button block onPress={this.onButtonPress.bind(this)} style={{ backgroundColor: "#7ACECE",height: 45, marginLeft: 15, marginRight: 15, marginTop: 30, elevation: 0 }}>
             <Text style={{color: "#3C3C3C"}} >登入</Text>
           </Button>
-          <Button block onPress={this.onButtonPress.bind(this)} style={{ backgroundColor: "transparent",borderColor: "#7ACECE", borderWidth: 2 ,height: 45, marginLeft: 15, marginRight: 15, marginTop: 15, elevation: 0 }}>
+          <Button block onPress={()=>
+          this.props.navigation.navigate('REGIS')} style={{ backgroundColor: "transparent",borderColor: "#7ACECE", borderWidth: 2 ,height: 45, marginLeft: 15, marginRight: 15, marginTop: 15, elevation: 0 }}>
             <Text style={{color: "#7ACECE"}} >註冊</Text>
           </Button>
           <Label style={{ marginLeft: 15, marginTop: 10, fontSize: 15 }}>欲申請資格</Label>
