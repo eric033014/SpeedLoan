@@ -265,7 +265,7 @@ export default class App extends Component {
             </Button>
           }
           { this.state.showregis &&
-            <Button block onPress={this.onCreateLoginSuccess.bind(this)} style={{ backgroundColor: "#7ACECE",height: 45, marginLeft: 15, marginRight: 15, elevation: 0 }}>
+            <Button block onPress={this.onCreateButtonPress.bind(this)} style={{ backgroundColor: "#7ACECE",height: 45, marginLeft: 15, marginRight: 15, elevation: 0 }}>
               <Text style={{color: "#3C3C3C"}} >註冊</Text>
             </Button>
           }

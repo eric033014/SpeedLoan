@@ -38,8 +38,8 @@ export default class profile extends Component {
         email: '',
         job_select: '學生',
         income_select: '250000',
-        worked_select: '',
-        region_select: '',
+        worked_select: 'key0',
+        region_select: 'key0',
         loading: false,
         userid:this.props.screenProps.auth().currentUser.uid
     });
