@@ -36,8 +36,8 @@ export default class profile extends Component {
         name: '',
         phone: '',
         email: '',
-        job_select: '',
-        income_select: '',
+        job_select: '學生',
+        income_select: '250000',
         worked_select: '',
         region_select: '',
         loading: false,
@@ -48,17 +48,20 @@ export default class profile extends Component {
   async componentWillMount() {
       this.props.screenProps.database().ref('/profile/'+this.state.userid).once("value").then(function(snapshot) {
         console.log(snapshot.val().name);
-        this.setState({
-          name:snapshot.val().name,
-          phone:snapshot.val().phone,
-          email:snapshot.val().email,
-          job_select: snapshot.val().job,
-          income_select: snapshot.val().income,
-          worked_select: snapshot.val().year,
-          region_select: snapshot.val().location,
-          loading:true
-        });
+        if(typeof snapshot.val().name != undefined && snapshot.val().name != null){
+          this.setState({
+            name:snapshot.val().name,
+            phone:snapshot.val().phone,
+            email:snapshot.val().email,
+            job_select: snapshot.val().job,
+            income_select: snapshot.val().income,
+            worked_select: snapshot.val().year,
+            region_select: snapshot.val().location,
+            loading:true
+          });
+        }
       }.bind(this));
+
   }
 
 

@@ -4,7 +4,8 @@ import {
   StyleSheet,
   Text,
   TextInput,
-  View
+  View,
+  Image
 } from 'react-native';
 import {
   Container, Header, Left, Body, Right, Button, Icon, Title, Content, Card, CardItem, Label

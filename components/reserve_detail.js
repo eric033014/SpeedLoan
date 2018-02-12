@@ -81,6 +81,15 @@ export default class reserve_detail extends Component {
      </Header>
        <Content>
        <Form style={{borderColor: 'transparent', marginRight: 15, marginTop: 30}}>
+         <Item style={{borderColor: 'transparent', marginRight: 15}}><Label style={{ color:'gray' }}>諮詢人姓名</Label></Item>
+         <Item style={{borderColor: 'transparent', marginRight: 15, marginTop: 0}}><Label>{this.props.navigation.state.params.name}</Label></Item>
+         <Item style={{borderColor: 'transparent', marginRight: 15, marginTop: 10}}></Item>
+         <Item style={{borderColor: 'transparent', marginRight: 15}}><Label style={{ color:'gray' }}>諮詢人電話</Label></Item>
+         <Item style={{borderColor: 'transparent', marginRight: 15, marginTop: 0}}><Label>{this.props.navigation.state.params.phone}</Label></Item>
+         <Item style={{borderColor: 'transparent', marginRight: 15, marginTop: 10}}></Item>
+         <Item style={{borderColor: 'transparent', marginRight: 15}}><Label style={{ color:'gray' }}>諮詢人工作</Label></Item>
+         <Item style={{borderColor: 'transparent', marginRight: 15, marginTop: 0}}><Label>{this.props.navigation.state.params.job}</Label></Item>
+         <Item style={{borderColor: 'transparent', marginRight: 15, marginTop: 10}}></Item>
          <Item style={{borderColor: 'transparent', marginRight: 15}}><Label style={{ color:'gray' }}>申請貸款類別</Label></Item>
          <Item style={{borderColor: 'transparent', marginRight: 15, marginTop: 0}}><Label>{this.props.navigation.state.params.category}</Label></Item>
          <Item style={{borderColor: 'transparent', marginRight: 15, marginTop: 10}}></Item>

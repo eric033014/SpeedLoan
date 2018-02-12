@@ -38,8 +38,8 @@ export default class company_profile extends Component {
         email: '',
         job_select: '',
         income_select: '',
-        worked_select: '',
-        region_select: '',
+        worked_select: 'key0',
+        region_select: 'key0',
         loading: false,
         userid:this.props.screenProps.auth().currentUser.uid
     });
@@ -48,14 +48,16 @@ export default class company_profile extends Component {
   async componentWillMount() {
       this.props.screenProps.database().ref('/profile/'+this.state.userid).once("value").then(function(snapshot) {
         console.log(snapshot.val().name);
-        this.setState({
-          name:snapshot.val().name,
-          phone:snapshot.val().phone,
-          email:snapshot.val().email,
-          job_select: snapshot.val().job,
-          worked_select: snapshot.val().year,
-          region_select: snapshot.val().location,
-        });
+        if(typeof snapshot.val().name != undefined && snapshot.val().name != null){
+          this.setState({
+            name:snapshot.val().name,
+            phone:snapshot.val().phone,
+            email:snapshot.val().email,
+            job_select: snapshot.val().job,
+            worked_select: snapshot.val().year,
+            region_select: snapshot.val().location,
+          });
+        }
       }.bind(this));
   }
 

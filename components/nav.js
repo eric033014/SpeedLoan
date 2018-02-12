@@ -9,6 +9,8 @@ import login from './login.js'
 import addreserve from './addreserve.js'
 import reserve_detail from './reserve_detail.js'
 import loan_intro from './loan_intro.js'
+import advertisement from './advertisement.js'
+import chatroom from './chatroom.js'
 
 import {
   DrawerNavigator,
@@ -69,7 +71,8 @@ const nav = DrawerNavigator(
     貸款說明:{screen:loan_intro},
     利率試算:{screen:rate},
     個人資訊:{ screen:profile},
-
+    廣告專區:{ screen:advertisement},
+    聊天室:{ screen:chatroom},
   },
   {
     initialRouteName:'個人資訊',
