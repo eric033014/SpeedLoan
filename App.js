@@ -73,7 +73,8 @@ export default class App extends Component {
         uid:"",
         login:false,
         user_border: '#FFFFFF',
-        password_border: '#FFFFFF'
+        password_border: '#FFFFFF',
+        showregis: false
       };
 
     }
@@ -147,6 +148,16 @@ export default class App extends Component {
         iscompany: value
       });
     }
+    onRegisPress() {
+      this.setState({
+        showregis: true
+      });
+    }
+    backToLogin() {
+      this.setState({
+        showregis: false
+      });
+    }
   render(){
       if(this.state.login){
         if(this.state.checkcompony == '0'){
@@ -159,15 +170,25 @@ export default class App extends Component {
           <Container style={{backgroundColor:"#3C3C3C"}}>
           <Content>
           <Form style={{paddingTop: 60}}>
-            <Item style={{borderColor: 'transparent', marginRight: 15, alignItems: 'center', justifyContent: 'center'}}>
-            <Image
-            style = {{ width: 65, height: 103, alignItems: 'center' }}
-            source = {require('./assets/img/login_logo.png')} />
-            </Item>
+            {
+              (!this.state.showregis) &&
+              <Item style={{borderColor: 'transparent', marginRight: 15, alignItems: 'center', justifyContent: 'center'}}>
+              <Image
+              style = {{ width: 65, height: 103, alignItems: 'center' }}
+              source = {require('./assets/img/login_logo.png')} />
+              </Item>
+            }
             <Item style={{borderColor: 'transparent', marginRight: 15, marginTop: 30, marginBottom: 10, alignItems: 'center', justifyContent: 'center'}}>
-            <Label style={{ color: 'white', fontSize: 20}}>
-              登入
-            </Label>
+            { (!this.state.showregis) &&
+              <Label style={{ color: 'white', fontSize: 20}}>
+                登入
+              </Label>
+            }
+            { (this.state.showregis) &&
+              <Label style={{ color: 'white', fontSize: 20}}>
+                試用帳號註冊
+              </Label>
+            }
             </Item>
             <Item stackedLabel style={{borderColor: 'transparent', marginRight: 15}}>
             <Label style={{ color: '#FFFFFF' }} >使用者名稱</Label>
@@ -207,27 +228,55 @@ export default class App extends Component {
               {this.state.error}
             </Label>
             </Item>
+            { this.state.showregis &&
+              <Label style={{ color: 'white',marginLeft: 15, marginTop: 10, fontSize: 15 }}>欲申請資格</Label>
+            }
+            { this.state.showregis &&
+              <Picker
+              mode="dropdown"
+              placeholder="請選擇註冊資格..."
+              selectedValue={this.state.iscompany}
+              onValueChange={this.onValueChange_iscompany.bind(this)}
+              itemTextStyle={{ color: '#FFFFFF' }}
+              style={{ marginLeft: 15, marginRight: 15, color: '#FFFFFF' }}
+              >
+              <Item label="請選擇註冊資格..." value='0' />
+              <Item label="會員" value='0' />
+              <Item label="事務所" value='1' />
+            </Picker>
+            }
+            { this.state.showregis &&
+              <View
+                style={{
+                  borderBottomColor: '#FFFFFF',
+                  borderBottomWidth: 1,
+                  marginLeft: 15,
+                  marginRight: 15
+                }}
+               />
+            }
           </Form>
           </Content>
-          <Button block onPress={this.onButtonPress.bind(this)} style={{ backgroundColor: "#7ACECE",height: 45, marginLeft: 15, marginRight: 15, elevation: 0 }}>
-            <Text style={{color: "#3C3C3C"}} >登入</Text>
-          </Button>
-          <Button block onPress={()=>
-          this.props.navigation.navigate('REGIS')} style={{ backgroundColor: "transparent",borderColor: "#7ACECE", borderWidth: 2 ,height: 45, marginLeft: 15, marginRight: 15, marginTop: 15, elevation: 0, marginBottom: 30 }}>
-            <Text style={{color: "#7ACECE"}} >註冊</Text>
-          </Button>
-          <Label style={{ marginLeft: 15, marginTop: 10, fontSize: 15 }}>欲申請資格</Label>
-          <Picker
-          mode="dropdown"
-          placeholder="請選擇申請資格..."
-          selectedValue={this.state.iscompany}
-          onValueChange={this.onValueChange_iscompany.bind(this)}
-          style={{ marginLeft: 15, marginRight: 15 }}
-          >
-          <Item label="請選擇資格..." value='0' />
-          <Item label="會員" value='0' />
-          <Item label="事務所" value='1' />
-        </Picker>
+          { (!this.state.showregis) &&
+            <Button block onPress={this.onButtonPress.bind(this)} style={{ backgroundColor: "#7ACECE",height: 45, marginLeft: 15, marginRight: 15, elevation: 0 }}>
+              <Text style={{color: "#3C3C3C"}} >登入</Text>
+            </Button>
+          }
+          { (!this.state.showregis) &&
+            <Button block onPress={this.onRegisPress.bind(this)} style={{ backgroundColor: "transparent",borderColor: "#7ACECE", borderWidth: 2 ,height: 45, marginLeft: 15, marginRight: 15, marginTop: 15, elevation: 0, marginBottom: 30 }}>
+              <Text style={{color: "#7ACECE"}} >註冊</Text>
+            </Button>
+          }
+          { this.state.showregis &&
+            <Button block onPress={this.onCreateLoginSuccess.bind(this)} style={{ backgroundColor: "#7ACECE",height: 45, marginLeft: 15, marginRight: 15, elevation: 0 }}>
+              <Text style={{color: "#3C3C3C"}} >註冊</Text>
+            </Button>
+          }
+          { (this.state.showregis) &&
+            <Button block onPress={this.backToLogin.bind(this)} style={{ backgroundColor: "transparent",borderColor: "#7ACECE", borderWidth: 2 ,height: 45, marginLeft: 15, marginRight: 15, marginTop: 15, elevation: 0, marginBottom: 30 }}>
+              <Text style={{color: "#7ACECE"}} >返回登入</Text>
+            </Button>
+          }
           </Container>
         );
       }
