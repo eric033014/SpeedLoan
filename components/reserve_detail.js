@@ -71,7 +71,7 @@ export default class reserve_detail extends Component {
        <Left>
          <Button transparent>
            <Icon type="Ionicons" name='md-arrow-back' style={{color:"#7ACECE"}}  onPress={()=>
-           this.props.navigation.navigate('貸款諮詢')}/>
+           this.props.navigation.navigate(this.props.navigation.state.params.back)}/>
          </Button>
        </Left>
        <Body>

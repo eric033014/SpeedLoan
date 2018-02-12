@@ -139,6 +139,18 @@ export default class login extends Component {
           <Button block onPress={this.onButtonPress.bind(this)} style={{ backgroundColor: "transparent",borderColor: "#7ACECE", borderWidth: 2 ,height: 45, marginLeft: 15, marginRight: 15, marginTop: 15, elevation: 0 }}>
             <Text style={{color: "#7ACECE"}} >註冊</Text>
           </Button>
+          <Label style={{ marginLeft: 15, marginTop: 10, fontSize: 15 }}>欲申請資格</Label>
+          <Picker
+          mode="dropdown"
+          placeholder="請選擇申請資格..."
+          selectedValue={this.state.iscompany}
+          onValueChange={this.onValueChange_iscompany.bind(this)}
+          style={{ marginLeft: 15, marginRight: 15 }}
+          >
+          <Item label="請選擇資格..." value='0' />
+          <Item label="會員" value='0' />
+          <Item label="事務所" value='1' />
+        </Picker>
           </Content>
 
        </Container>

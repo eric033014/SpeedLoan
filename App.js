@@ -77,12 +77,19 @@ export default class App extends Component {
       };
 
     }
+    onCreateButtonPress(){
+      console.log("create");
+      const { email, password } = this.state;
+      firebase.auth().createUserWithEmailAndPassword(email, password)
+      .then(this.onCreateLoginSuccess.bind(this))
+      .catch(this.onLoginFail.bind(this));
+    }
     onButtonPress() {
         //this.setState({login: true,});
         const { email, password } = this.state;
         console.log(email+" "+password);
 
-          firebase.auth().signInWithEmailAndPassword("eric0330eric@gmail.com","ricky42613")
+          firebase.auth().signInWithEmailAndPassword(email,password)
             .then(this.onLoginSuccess.bind(this))
             .catch(this.onLoginFail.bind(this));
 
@@ -94,7 +101,26 @@ export default class App extends Component {
             // });
         console.log(this.props);
     }
+    onCreateLoginSuccess() {
+      console.log("login success");
+        this.setState({
+            email: 'eric0330eric@gmail.com',
+            password: 'ricky42613',
+            loading: false,
+            error: 'Success',
+            login: true,
+            checkcompony: this.state.iscompany,
+        });
+        const user=firebase.auth().currentUser.uid;
+        console.log(user);
+        firebase.database().ref('/profile/'+user).set({
+          iscompony:this.state.iscompany,
+        });
+
+        return (<Button title="Logout" onPress={() => firebase.auth().signOut()}></Button>);
+    }
     onLoginSuccess() {
+      console.log("login success");
         this.setState({
             email: 'eric0330eric@gmail.com',
             password: 'ricky42613',
@@ -103,25 +129,27 @@ export default class App extends Component {
             login: true,
         });
         const user=firebase.auth().currentUser.uid;
+        console.log(user);
         firebase.database().ref('/profile/'+user).once("value").then(function(snapshot) {
-          console.log(snapshot.val().iscompony);
+          console.log("iscompany: "+snapshot.val().iscompony);
           this.setState({
-            iscompony:snapshot.val().iscompony,
+            checkcompony:snapshot.val().iscompony,
           });
         }.bind(this));
-        //this.setState({ uid: user.uid });
-        // firebase.database().ref('profile/'+user.uid).set({
-        //   iscompony:0,
-        // });
         return (<Button title="Logout" onPress={() => firebase.auth().signOut()}></Button>);
     }
     onLoginFail() {
+      console.log("login failed");
       this.setState({ error: 'Failed', loading: false });
     }
-
+    onValueChange_iscompany(value: string) {
+      this.setState({
+        iscompany: value
+      });
+    }
   render(){
       if(this.state.login){
-        if(this.state.iscompony == 0){
+        if(this.state.checkcompony == '0'){
           return <Nav screenProps={firebase}/>;
         } else{
           return <CompanyNav screenProps={firebase}/>;
@@ -184,9 +212,21 @@ export default class App extends Component {
           <Button block onPress={this.onButtonPress.bind(this)} style={{ backgroundColor: "#7ACECE",height: 45, marginLeft: 15, marginRight: 15, elevation: 0 }}>
             <Text style={{color: "#3C3C3C"}} >登入</Text>
           </Button>
-          <Button block onPress={this.onButtonPress.bind(this)} style={{ backgroundColor: "transparent",borderColor: "#7ACECE", borderWidth: 2 ,height: 45, marginLeft: 15, marginRight: 15, marginTop: 15, elevation: 0, marginBottom: 30 }}>
+          <Button block onPress={this.onCreateButtonPress.bind(this)} style={{ backgroundColor: "transparent",borderColor: "#7ACECE", borderWidth: 2 ,height: 45, marginLeft: 15, marginRight: 15, marginTop: 15, elevation: 0, marginBottom: 30 }}>
             <Text style={{color: "#7ACECE"}} >註冊</Text>
           </Button>
+          <Label style={{ marginLeft: 15, marginTop: 10, fontSize: 15 }}>欲申請資格</Label>
+          <Picker
+          mode="dropdown"
+          placeholder="請選擇申請資格..."
+          selectedValue={this.state.iscompany}
+          onValueChange={this.onValueChange_iscompany.bind(this)}
+          style={{ marginLeft: 15, marginRight: 15 }}
+          >
+          <Item label="請選擇資格..." value='0' />
+          <Item label="會員" value='0' />
+          <Item label="事務所" value='1' />
+        </Picker>
           </Container>
         );
       }

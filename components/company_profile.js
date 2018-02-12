@@ -53,7 +53,6 @@ export default class company_profile extends Component {
           phone:snapshot.val().phone,
           email:snapshot.val().email,
           job_select: snapshot.val().job,
-          income_select: snapshot.val().income,
           worked_select: snapshot.val().year,
           region_select: snapshot.val().location,
         });
@@ -84,8 +83,6 @@ export default class company_profile extends Component {
             name: this.state.name,
             email: this.state.email,
             phone: this.state.phone,
-            income: this.state.income_select,
-            job: this.state.job_select,
             location: this.state.region_select,
             year: this.state.worked_select
         });
@@ -181,7 +178,7 @@ export default class company_profile extends Component {
                           });
                       }
                   }
-                  value={this.state.phone.toString()}
+                  value={this.state.phone}
                   style={{ borderBottomWidth: 1, borderBottomColor: this.state.contact_border }} />
               </Item>
               <Item stackedLabel style={{borderColor: 'transparent', marginRight: 15}}>

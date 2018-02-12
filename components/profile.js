@@ -183,7 +183,7 @@ export default class profile extends Component {
                             });
                         }
                     }
-                    value={this.state.phone.toString()}
+                    value={this.state.phone}
                     style={{ borderBottomWidth: 1, borderBottomColor: this.state.contact_border }} />
                 </Item>
                 <Item stackedLabel style={{borderColor: 'transparent', marginRight: 15}}>
