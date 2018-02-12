@@ -59,7 +59,11 @@ export default class profile extends Component {
             region_select: snapshot.val().location,
             loading:true
           });
-        }
+      } else {
+          this.setState({
+            loading: true
+          });
+      }
       }.bind(this));
 
   }
