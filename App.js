@@ -80,7 +80,8 @@ export default class App extends Component {
         password_border: '#FFFFFF',
         showregis: false,
         iscompony: '1',
-        processing: false
+        processing: false,
+        checkcompony:'0',
       };
 
     }
@@ -291,7 +292,7 @@ export default class App extends Component {
               >
               <Item label="請選擇註冊資格..." value='0' />
               <Item label="會員" value='0' />
-              <Item label="事務所" value='1' />
+              <Item label="公司" value='1' />
             </Picker>
             }
             { this.state.showregis &&
