@@ -9,6 +9,7 @@ import {
   TextInput,
   View
 } from 'react-native';
+import Toast from 'react-native-simple-toast';
 import {
   Container, Header, Left, Body, Right, Button, Icon, Title, Content, Form, Item, Input, Label, Picker
 } from 'native-base';
@@ -93,6 +94,7 @@ export default class company_profile extends Component {
             location: this.state.region_select,
             year: this.state.worked_select
         });
+        Toast.show('更新完成', Toast.SHORT);
     }
 
     static navigationOptions = {
