@@ -46,7 +46,9 @@ const styles = StyleSheet.create({
   errorTextStyle: {
       fontSize: 20,
       alignSelf: 'center',
-      color: 'red'
+      color: 'red',
+      marginLeft: 15,
+      marginTop: 10
   },
 });
 
@@ -194,12 +196,14 @@ export default class App extends Component {
     }
     onRegisPress() {
       this.setState({
-        showregis: true
+        showregis: true,
+        error: ""
       });
     }
     backToLogin() {
       this.setState({
-        showregis: false
+        showregis: false,
+        error: ""
       });
     }
   render(){
@@ -274,9 +278,6 @@ export default class App extends Component {
               style={{ borderBottomWidth: 1, borderBottomColor: this.state.password_border, color: '#FFFFFF' }} />
             </Item>
             <Item style={{borderColor: 'transparent', marginRight: 15}}>
-            <Label style={styles.errorTextStyle}>
-              {this.state.error}
-            </Label>
             </Item>
             { this.state.showregis &&
               <Label style={{ color: 'white',marginLeft: 15, marginTop: 10, fontSize: 15 }}>欲申請資格</Label>
@@ -305,6 +306,9 @@ export default class App extends Component {
                 }}
                />
             }
+            <Label style={styles.errorTextStyle}>
+              {this.state.error}
+            </Label>
           </Form>
           </Content>
           { (!this.state.showregis) &&

@@ -106,17 +106,17 @@ export default class addreserve extends Component {
         userid:this.props.screenProps.auth().currentUser.uid,
         loan_category: "小額信貸",
         need_money: 1000,
-        purpose: "Your purpose",
+        purpose: "請輸入貸款目的",
         return_year: "1年內",
         date:"",
         date2:"",
         date3:"",
-        select_city:"key1",
-        select_city2:"key2",
-        select_city3:"key2",
-        select_city_area:"key1",
-        select_city_area2:"key1",
-        select_city_area3:"key1",
+        select_city:"",
+        select_city2:"",
+        select_city3:"",
+        select_city_area:"",
+        select_city_area2:"",
+        select_city_area3:"",
       }
     }
     async componentWillMount() {
@@ -159,7 +159,7 @@ export default class addreserve extends Component {
             finish:false,
         });
         Toast.show('預約成功', Toast.SHORT);
-        this.props.navigation.navigate('貸款諮詢');
+        this.props.navigation.navigate('reserve');
     }
     onValueChange_loan_category(value: string) {
       this.setState({
@@ -299,6 +299,7 @@ export default class addreserve extends Component {
                 <Label>需貸款金額</Label>
                 <Input
                   placeholder="請輸入您的貸款金額..."
+                  keyboardType = 'numeric'
                   onBlur={ () => { this.setState({
                     amount_border: '#515151'
                   })
@@ -327,6 +328,7 @@ export default class addreserve extends Component {
                <Input
                  placeholder="請輸入您的貸款目的..."
                  value={this.state.purpose}
+                 selectTextOnFocus
                  onBlur={ () => { this.setState({
                    purpose_border: '#515151'
                  })

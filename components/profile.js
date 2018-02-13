@@ -102,6 +102,7 @@ export default class profile extends Component {
             year: this.state.worked_select
         });
         Toast.show('更新完成', Toast.SHORT);
+        this.props.navigation.navigate('DrawerOpen');
     }
 
     static navigationOptions = {
@@ -247,6 +248,7 @@ export default class profile extends Component {
                <Picker
                mode="dropdown"
                placeholder="請選擇您的年收入..."
+               keyboardType = 'numeric'
                selectedValue={this.state.income_select}
                onValueChange={this.onValueChange_income_select.bind(this)}
                style={{ marginLeft: 15, marginRight: 15 }}

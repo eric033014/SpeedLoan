@@ -61,25 +61,21 @@ export default class compony_reserve_detail extends Component {
   //     this.state = {};
   //   }
   static navigationOptions = {
-    drawerLabel: () => null
-  }
+title: '貸款諮詢細節',
+headerTintColor: '#7ACECE',
+headerStyle: {
+backgroundColor: '#3C3C3C',
+},
+headerTitleStyle: {
+  color: 'white',
+  fontWeight: "normal"
+}
+};
  render() {
    const { title } = this.state;
    //console.log("xxx "+this.props.navigation.state.params.test);
    return (
      <Container style={{backgroundColor:'#EFEFEF'}}>
-     <Header style={{backgroundColor:"#3C3C3C"}} androidStatusBarColor="#282828">
-       <Left>
-         <Button transparent>
-           <Icon type="Ionicons" name='md-arrow-back' style={{color:"#7ACECE"}}  onPress={()=>
-           this.props.navigation.navigate(this.props.navigation.state.params.back)}/>
-         </Button>
-       </Left>
-       <Body>
-       <Title>{title}</Title>
-       </Body>
-       <Right/>
-     </Header>
        <Content>
        <Form style={{borderColor: 'transparent', marginRight: 15, marginTop: 30, backgroundColor: 'white', marginLeft: 15, paddingTop: 20, paddingBottom: 20}}>
          <Item style={{borderColor: 'transparent', marginRight: 15}}><Label style={{ color:'gray' }}>諮詢人姓名</Label></Item>

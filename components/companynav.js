@@ -13,7 +13,8 @@ import chatroom from './chatroom.js'
 
 import {
   DrawerNavigator,
-  DrawerItems
+  DrawerItems,
+  StackNavigator
 } from 'react-navigation';
 import {
   Container, Header, Left, Body, Right, Button, Icon, Title, Content, Label
@@ -60,10 +61,25 @@ const customnav = (props) =>(
   </Container>
 )
 
+const AppNavigator = StackNavigator(
+  {
+    reserve_detail:{ screen:reserve_detail},
+    reserve:{ screen:reserve,
+      navigationOptions : {
+      drawerIcon: ({ tintColor }) => (
+        <Icon type='Entypo' name="message" style={{ fontSize: 20 , color: tintColor }}  />
+      )
+    }}
+  },
+  {
+    initialRouteName:'reserve',
+    headerMode: 'screen'
+  }
+);
+
 const nav = DrawerNavigator(
   {
-    reserve_detail:{screen:reserve_detail},
-    貸款諮詢區:{ screen:reserve},
+    貸款諮詢區:{ screen:AppNavigator},
     事務所資訊:{ screen:profile},
     廣告專區:{ screen:advertisement},
     聊天室:{ screen:chatroom},

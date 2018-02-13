@@ -54,7 +54,7 @@ export default class reserve_detail extends Component {
         finish:1,
       });
       Toast.show('已將狀態調整為解決', Toast.SHORT);
-      this.props.navigation.navigate('貸款諮詢');
+      this.props.navigation.navigate('reserve');
     }
     //_onChange = (formData) => console.log(JSON.stringify(formData, null, " "));
 
@@ -102,8 +102,8 @@ headerTitleStyle: {
      <Container style={{backgroundColor:'#EFEFEF'}}>
        <Content>
        { (this.props.navigation.state.params.finish == 0) &&
-         <Button block onPress={this.onReslovePress.bind(this)} style={{ backgroundColor: "#7ACECE",height: 45, marginLeft: 15, marginRight: 15, elevation: 0 }}>
-           <Text style={{color: "#3C3C3C"}} >解決</Text>
+         <Button block onPress={this.onReslovePress.bind(this)} style={{ marginTop: 30, backgroundColor: "#7ACECE",height: 45, marginLeft: 15, marginRight: 15, elevation: 0 }}>
+           <Text style={{color: "white"}} >標示為已解決</Text>
          </Button>
        }
        <Form style={{borderColor: 'transparent', marginRight: 15, marginTop: 30, backgroundColor: 'white', marginLeft: 15, paddingTop: 20, paddingBottom: 20}}>

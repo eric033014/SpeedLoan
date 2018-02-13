@@ -13,6 +13,7 @@ import Toast from 'react-native-simple-toast';
 import {
   Container, Header, Left, Body, Right, Button, Icon, Title, Content, Form, Item, Input, Label, Picker
 } from 'native-base';
+import Spinner from 'react-native-loading-spinner-overlay';
 var styles = StyleSheet.create({
     description: {
         fontSize: 20,
@@ -95,6 +96,7 @@ export default class company_profile extends Component {
             year: this.state.worked_select
         });
         Toast.show('更新完成', Toast.SHORT);
+        this.props.navigation.navigate('DrawerOpen');
     }
 
     static navigationOptions = {
@@ -128,144 +130,152 @@ export default class company_profile extends Component {
   //   }
     render() {
       const { title } = this.state;
-      return (
-        <Container>
-        <Header style={{backgroundColor:"#3C3C3C"}} androidStatusBarColor="#282828">
-          <Left>
-            <Button transparent>
-              <Icon name='menu' style={{color:"#7ACECE"}}  onPress={()=>
-              this.props.navigation.navigate('DrawerOpen')}/>
-            </Button>
-          </Left>
-          <Body>
-          <Title>{title}</Title>
-          </Body>
-          <Right/>
-        </Header>
-   	      <Content>
-            <Label style={{marginLeft: 15,marginBottom: 15,marginTop: 30}}>嗨，您好</Label>
-            <Form style={{paddingBottom: 30}}>
-              <Item stackedLabel style={{borderColor: 'transparent', marginRight: 15}}>
-                <Label>事務所名字</Label>
-                <Input
-                  placeholder="請輸入您的事務所名字..."
-                  onBlur={ () => { this.setState({
-                    name_border: '#515151'
-                  })
-                  }}
-                  onFocus={ () => { this.setState({
-                    name_border: '#7ACECE'
-                  })
-                  }}
-                  onChangeText={
-                      (text) => {
-                          this.setState({
-                              name: text
-                          });
-                      }
-                  }
-                  value={this.state.name}
-                  style={{ borderBottomWidth: 1, borderBottomColor: this.state.name_border }} />
-              </Item>
-              <Item stackedLabel style={{borderColor: 'transparent', marginRight: 15}}>
-                <Label>事務所聯絡方式</Label>
-                <Input
-                  placeholder="請輸入您的事務所聯絡電話..."
-                  keyboardType = 'numeric'
-                  onBlur={ () => { this.setState({
-                    contact_border: '#515151'
-                  })
-                  }}
-                  onFocus={ () => { this.setState({
-                    contact_border: '#7ACECE'
-                  })
-                  }}
-                  onChangeText={
-                      (text) => {
-                          this.setState({
-                              phone: text
-                          });
-                      }
-                  }
-                  value={this.state.phone}
-                  style={{ borderBottomWidth: 1, borderBottomColor: this.state.contact_border }} />
-              </Item>
-              <Item stackedLabel style={{borderColor: 'transparent', marginRight: 15}}>
-                <Label>事務所電子信箱</Label>
-                <Input
-                  placeholder="請輸入您的事務所電子信箱..."
-                  onBlur={ () => { this.setState({
-                    email_border: '#515151'
-                  })
-                  }}
-                  onFocus={ () => { this.setState({
-                    email_border: '#7ACECE'
-                  })
-                  }}
-                  onChangeText={
-                      (text) => {
-                          this.setState({
-                              email: text
-                          });
-                      }
-                  }
-                  value={this.state.email}
-                  style={{ borderBottomWidth: 1, borderBottomColor: this.state.email_border }} />
-              </Item>
+      if(this.state.loading){
+        return (
+          <Container>
+          <Header style={{backgroundColor:"#3C3C3C"}} androidStatusBarColor="#282828">
+            <Left>
+              <Button transparent>
+                <Icon name='menu' style={{color:"#7ACECE"}}  onPress={()=>
+                this.props.navigation.navigate('DrawerOpen')}/>
+              </Button>
+            </Left>
+            <Body>
+            <Title>{title}</Title>
+            </Body>
+            <Right/>
+          </Header>
+     	      <Content>
+              <Label style={{marginLeft: 15,marginBottom: 15,marginTop: 30}}>嗨，您好</Label>
+              <Form style={{paddingBottom: 30}}>
+                <Item stackedLabel style={{borderColor: 'transparent', marginRight: 15}}>
+                  <Label>事務所名字</Label>
+                  <Input
+                    placeholder="請輸入您的事務所名字..."
+                    onBlur={ () => { this.setState({
+                      name_border: '#515151'
+                    })
+                    }}
+                    onFocus={ () => { this.setState({
+                      name_border: '#7ACECE'
+                    })
+                    }}
+                    onChangeText={
+                        (text) => {
+                            this.setState({
+                                name: text
+                            });
+                        }
+                    }
+                    value={this.state.name}
+                    style={{ borderBottomWidth: 1, borderBottomColor: this.state.name_border }} />
+                </Item>
+                <Item stackedLabel style={{borderColor: 'transparent', marginRight: 15}}>
+                  <Label>事務所聯絡方式</Label>
+                  <Input
+                    placeholder="請輸入您的事務所聯絡電話..."
+                    keyboardType = 'numeric'
+                    onBlur={ () => { this.setState({
+                      contact_border: '#515151'
+                    })
+                    }}
+                    onFocus={ () => { this.setState({
+                      contact_border: '#7ACECE'
+                    })
+                    }}
+                    onChangeText={
+                        (text) => {
+                            this.setState({
+                                phone: text
+                            });
+                        }
+                    }
+                    value={this.state.phone}
+                    style={{ borderBottomWidth: 1, borderBottomColor: this.state.contact_border }} />
+                </Item>
+                <Item stackedLabel style={{borderColor: 'transparent', marginRight: 15}}>
+                  <Label>事務所電子信箱</Label>
+                  <Input
+                    placeholder="請輸入您的事務所電子信箱..."
+                    onBlur={ () => { this.setState({
+                      email_border: '#515151'
+                    })
+                    }}
+                    onFocus={ () => { this.setState({
+                      email_border: '#7ACECE'
+                    })
+                    }}
+                    onChangeText={
+                        (text) => {
+                            this.setState({
+                                email: text
+                            });
+                        }
+                    }
+                    value={this.state.email}
+                    style={{ borderBottomWidth: 1, borderBottomColor: this.state.email_border }} />
+                </Item>
 
-            <Label style={{ marginLeft: 15, marginTop: 10, fontSize: 15 }}>所在地</Label>
-            <Picker
-            mode="dropdown"
-            placeholder="請選擇您的所在地..."
-            selectedValue={this.state.region_select}
-            onValueChange={this.onValueChange_region_select.bind(this)}
-            style={{ marginLeft: 15, marginRight: 15 }}
-            >
-            <Item label="北部地區" value="key0" />
-            <Item label="中部地區" value="key1" />
-            <Item label="南部地區" value="key2" />
-            <Item label="東部地區" value="key3" />
-            <Item label="離島地區" value="key4" />
-          </Picker>
-          <View
-            style={{
-              borderBottomColor: '#515151',
-              borderBottomWidth: 1,
-              marginLeft: 15,
-              marginRight: 15
-            }}
-           />
-           <Label style={{ marginLeft: 15, marginTop: 10, fontSize: 15 }}>事務所資歷</Label>
-           <Picker
-           mode="dropdown"
-           placeholder="請選擇您的事務所資歷..."
-           selectedValue={this.state.worked_select}
-           onValueChange={this.onValueChange_worked_select.bind(this)}
-           style={{ marginLeft: 15, marginRight: 15 }}
-           >
-           <Item label="<3yr" value="key0" />
-           <Item label="3yr ~ 5yr" value="key1" />
-           <Item label="6yr ~ 10yr" value="key2" />
-           <Item label="11yr ~ 15yr" value="key3" />
-           <Item label=">15yr" value="key4" />
-         </Picker>
-         <View
-           style={{
-             borderBottomColor: '#515151',
-             borderBottomWidth: 1,
-             marginLeft: 15,
-             marginRight: 15
-           }}
-          />
-            </Form>
-            <Button block style={{ backgroundColor: "#7ACECE",height: 45, marginLeft: 15, marginRight: 15, marginBottom: 30, elevation: 0 }}
-           onPress={this.onPressAdd}
-            >
-              <Text style={{color: "white"}} >更新</Text>
-            </Button>
-          </Content>
-        </Container>
+              <Label style={{ marginLeft: 15, marginTop: 10, fontSize: 15 }}>所在地</Label>
+              <Picker
+              mode="dropdown"
+              placeholder="請選擇您的所在地..."
+              selectedValue={this.state.region_select}
+              onValueChange={this.onValueChange_region_select.bind(this)}
+              style={{ marginLeft: 15, marginRight: 15 }}
+              >
+              <Item label="北部地區" value="key0" />
+              <Item label="中部地區" value="key1" />
+              <Item label="南部地區" value="key2" />
+              <Item label="東部地區" value="key3" />
+              <Item label="離島地區" value="key4" />
+            </Picker>
+            <View
+              style={{
+                borderBottomColor: '#515151',
+                borderBottomWidth: 1,
+                marginLeft: 15,
+                marginRight: 15
+              }}
+             />
+             <Label style={{ marginLeft: 15, marginTop: 10, fontSize: 15 }}>事務所資歷</Label>
+             <Picker
+             mode="dropdown"
+             placeholder="請選擇您的事務所資歷..."
+             selectedValue={this.state.worked_select}
+             onValueChange={this.onValueChange_worked_select.bind(this)}
+             style={{ marginLeft: 15, marginRight: 15 }}
+             >
+             <Item label="<3yr" value="key0" />
+             <Item label="3yr ~ 5yr" value="key1" />
+             <Item label="6yr ~ 10yr" value="key2" />
+             <Item label="11yr ~ 15yr" value="key3" />
+             <Item label=">15yr" value="key4" />
+           </Picker>
+           <View
+             style={{
+               borderBottomColor: '#515151',
+               borderBottomWidth: 1,
+               marginLeft: 15,
+               marginRight: 15
+             }}
+            />
+              </Form>
+              <Button block style={{ backgroundColor: "#7ACECE",height: 45, marginLeft: 15, marginRight: 15, marginBottom: 30, elevation: 0 }}
+             onPress={this.onPressAdd}
+              >
+                <Text style={{color: "white"}} >更新</Text>
+              </Button>
+            </Content>
+          </Container>
 
-      );
+        );
+      } else {
+        return (
+          <View style={{ flex: 1 }}>
+              <Spinner visible={!this.state.loading} textContent={""} overlayColor={"rgba(0, 0, 0, 0.5)"} textStyle={{color: '#FFF'}} />
+          </View>
+        );
+      }
     }
 }

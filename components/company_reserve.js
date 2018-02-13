@@ -102,9 +102,7 @@ export default class company_reserve extends Component {
     //     }.bind(this));
     // }
     static navigationOptions = {
-      drawerIcon: ({ tintColor }) => (
-        <Icon type='Entypo' name="message" style={{ fontSize: 20 , color: tintColor }}  />
-      )
+      header: null
     }
   // constructor(props) {
   //     super(props);
