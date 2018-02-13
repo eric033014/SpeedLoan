@@ -23,7 +23,7 @@ var styles = StyleSheet.create({
     }
 });
 
-export default class reserve_detail extends Component {
+export default class compony_reserve_detail extends Component {
   constructor(props) {
       super(props);
       this.state = {
@@ -48,11 +48,7 @@ export default class reserve_detail extends Component {
         return_year: value
       });
     }
-    onReslovePress(){
-      this.props.screenProps.database().ref('/reserve/'+this.props.navigation.state.params.key).update({
-        finish:1,
-      });
-    }
+
     //_onChange = (formData) => console.log(JSON.stringify(formData, null, " "));
 
   /* static navigationOptions = {
@@ -85,11 +81,6 @@ export default class reserve_detail extends Component {
        <Right/>
      </Header>
        <Content>
-       { (this.props.navigation.state.params.finish == 0) &&
-         <Button block onPress={this.onReslovePress.bind(this)} style={{ backgroundColor: "#7ACECE",height: 45, marginLeft: 15, marginRight: 15, elevation: 0 }}>
-           <Text style={{color: "#3C3C3C"}} >解決</Text>
-         </Button>
-       }
        <Form style={{borderColor: 'transparent', marginRight: 15, marginTop: 30, backgroundColor: 'white', marginLeft: 15, paddingTop: 20, paddingBottom: 20}}>
          <Item style={{borderColor: 'transparent', marginRight: 15}}><Label style={{ color:'gray' }}>諮詢人姓名</Label></Item>
          <Item style={{borderColor: 'transparent', marginRight: 15, marginTop: 0}}><Label>{this.props.navigation.state.params.name}</Label></Item>

@@ -107,9 +107,9 @@ export default class addreserve extends Component {
         need_money: 1000,
         purpose: "Your purpose",
         return_year: "1年內",
-        date:"none",
-        date2:"none",
-        date3:"none",
+        date:"",
+        date2:"",
+        date3:"",
         select_city:"key1",
         select_city2:"key2",
         select_city3:"key2",
@@ -155,6 +155,7 @@ export default class addreserve extends Component {
             area1: this.state.select_city_area,
             area2: this.state.select_city_area2,
             area3: this.state.select_city_area3,
+            finish:false,
         });
     }
     onValueChange_loan_category(value: string) {
@@ -374,8 +375,8 @@ export default class addreserve extends Component {
                     date={this.state.date}
                     mode="datetime"
                     placeholder="請選擇預約時間"
-                    format="YYYY-MM-DD HH:MM:SS"
-                    minDate="2018-02-01"
+                    format="YYYY-MM-DD HH:mm"
+                    minDate="2018-01-01"
                     maxDate="2020-12-31"
                     confirmBtnText="選擇"
                     cancelBtnText="取消"
@@ -456,8 +457,8 @@ export default class addreserve extends Component {
                         date={this.state.date2}
                         mode="datetime"
                         placeholder="請選擇預約時間"
-                        format="YYYY-MM-DD HH:MM:SS"
-                        minDate="2018-02-01"
+                        format="YYYY-MM-DD HH:mm"
+                        minDate="2018-01-01"
                         maxDate="2020-12-31"
                         confirmBtnText="選擇"
                         cancelBtnText="取消"
@@ -538,8 +539,8 @@ export default class addreserve extends Component {
                             date={this.state.date3}
                             mode="datetime"
                             placeholder="請選擇預約時間"
-                            format="YYYY-MM-DD HH:MM:SS"
-                            minDate="2018-02-01"
+                            format="YYYY-MM-DD HH:mm"
+                            minDate="2018-01-01"
                             maxDate="2020-12-31"
                             confirmBtnText="選擇"
                             cancelBtnText="取消"

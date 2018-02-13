@@ -21,7 +21,7 @@ var styles = StyleSheet.create({
     }
 });
 var detail=[];
-var nn="xxx";
+var detail_finish=[];
 export default class company_reserve extends Component {
   constructor(props) {
       super(props);
@@ -29,34 +29,53 @@ export default class company_reserve extends Component {
         title: '貸款需求區',
         seg: 1,
         loading:false
-
       }
-
   }
   componentWillMount() {
     var userid = this.state.userid;
     var parent = this;
     this.props.screenProps.database().ref('/reserve').once("value").then(function(snapshot) {
       detail=[];
+      detail_finish=[];
       snapshot.forEach(function(temp){
         console.log(temp.val().name);
-        detail.push(
-          <Card style={{ marginLeft: 15, marginRight: 15, marginTop: 10, elevation: 0, borderWidth: 1, borderRadius: 0, borderColor: 'white' }}>
-          <CardItem button onPress={() =>
-            parent.props.navigation.navigate('reserve_detail',{job:temp.val().job,phone:temp.val().phone,back:'貸款諮詢區',category:temp.val().category,name:temp.val().name,purpose:temp.val().purpose,date1:temp.val().date1,city1:temp.val().city1,area1:temp.val().area1,money:temp.val().need_money,year:temp.val().return_year,date2:temp.val().date2,city2:temp.val().city2,area2:temp.val().area2,date3:temp.val().date3,city3:temp.val().city3,area3:temp.val().area3})
-          } style={{ borderWidth: 0, borderRadius: 0 }} >
-              <Body>
-                <Text style={{ color: '#82CC7A' }} >{temp.val().category}</Text>
-                <Text style={{ color: '#3C3C3C' }} >{temp.val().name}</Text>
-              </Body>
-              <Right>
-              <Text style={{ color: '#7ACECE' }} >{temp.val().date1}</Text>
-              <Text>{temp.val().city1},{temp.val().area1}</Text>
-              </Right>
-             </CardItem>
-           </Card>
-      );
-        console.log("detail: "+detail[0].name);
+        if(temp.val().finish === 0){
+          detail.push(
+            <Card style={{ marginLeft: 15, marginRight: 15, marginTop: 10, elevation: 0, borderWidth: 1, borderRadius: 0, borderColor: 'white' }}>
+            <CardItem button onPress={() =>
+              parent.props.navigation.navigate('reserve_detail',{job:temp.val().job,phone:temp.val().phone,back:'貸款諮詢區',category:temp.val().category,name:temp.val().name,purpose:temp.val().purpose,date1:temp.val().date1,city1:temp.val().city1,area1:temp.val().area1,money:temp.val().need_money,year:temp.val().return_year,date2:temp.val().date2,city2:temp.val().city2,area2:temp.val().area2,date3:temp.val().date3,city3:temp.val().city3,area3:temp.val().area3})
+            } style={{ borderWidth: 0, borderRadius: 0 }} >
+                <Body>
+                  <Text style={{ color: '#82CC7A' }} >{temp.val().category}</Text>
+                  <Text style={{ color: '#3C3C3C' }} >{temp.val().name}</Text>
+                </Body>
+                <Right>
+                <Text style={{ color: '#7ACECE' }} >{temp.val().date1}</Text>
+                <Text>{temp.val().city1},{temp.val().area1}</Text>
+                </Right>
+               </CardItem>
+             </Card>
+        );
+      } else{
+        console.log("finish");
+          detail_finish.push(
+            <Card style={{ marginLeft: 15, marginRight: 15, marginTop: 10, elevation: 0, borderWidth: 1, borderRadius: 0, borderColor: 'white' }}>
+            <CardItem button onPress={() =>
+              parent.props.navigation.navigate('reserve_detail',{job:temp.val().job,phone:temp.val().phone,back:'貸款諮詢區',category:temp.val().category,name:temp.val().name,purpose:temp.val().purpose,date1:temp.val().date1,city1:temp.val().city1,area1:temp.val().area1,money:temp.val().need_money,year:temp.val().return_year,date2:temp.val().date2,city2:temp.val().city2,area2:temp.val().area2,date3:temp.val().date3,city3:temp.val().city3,area3:temp.val().area3})
+            } style={{ borderWidth: 0, borderRadius: 0 }} >
+                <Body>
+                  <Text style={{ color: '#82CC7A' }} >{temp.val().category}</Text>
+                  <Text style={{ color: '#3C3C3C' }} >{temp.val().name}</Text>
+                </Body>
+                <Right>
+                <Text style={{ color: '#7ACECE' }} >{temp.val().date1}</Text>
+                <Text>{temp.val().city1},{temp.val().area1}</Text>
+                </Right>
+               </CardItem>
+             </Card>
+        );
+      }
+      console.log("detail: "+detail[0]);
 
       }.bind(this));
       console.log("detail1: "+detail[0]);
@@ -110,43 +129,34 @@ export default class company_reserve extends Component {
           <Segment style={{ marginTop: 15, backgroundColor: "transparent"  }}>
               <Button
                 style={{
-                  backgroundColor: this.state.seg === 1 ? "#3C3C3C" : undefined,
+                  backgroundColor: this.state.seg ? "#3C3C3C" : undefined,
                   borderColor: "#3C3C3C",
                 }}
                 first
-                active={this.state.seg === 1 ? true : false}
-                onPress={() => this.setState({ seg: 1 })}
+                active={this.state.seg  ? true : false}
+                onPress={() => this.setState({ seg: true })}
               >
-                <Text style={{ color: this.state.seg === 1 ? "#FFF" : "#3C3C3C" }}>未分配</Text>
+                <Text style={{ color: this.state.seg  ? "#FFF" : "#3C3C3C" }}>未分配</Text>
               </Button>
               <Button
                 style={{
-                  backgroundColor: this.state.seg === 2 ? "#3C3C3C" : undefined,
+                  backgroundColor: !this.state.seg  ? "#3C3C3C" : undefined,
                   borderColor: "#3C3C3C",
                 }}
-                active={this.state.seg === 2 ? true : false}
-                onPress={() => this.setState({ seg: 2 })}
+                active={!this.state.seg  ? true : false}
+                onPress={() => this.setState({ seg: false })}
               >
-                <Text style={{ color: this.state.seg === 2 ? "#FFF" : "#3C3C3C" }}>已分配</Text>
-              </Button>
-              <Button
-                last
-                style={{
-                  backgroundColor: this.state.seg === 3 ? "#3C3C3C" : undefined,
-                  borderColor: "#3C3C3C",
-                }}
-                active={this.state.seg === 3 ? true : false}
-                onPress={() => this.setState({ seg: 3 })}
-              >
-                <Text style={{ color: this.state.seg === 3 ? "#FFF" : "#3C3C3C" }}>歷史紀錄</Text>
+                <Text style={{ color: !this.state.seg ? "#FFF" : "#3C3C3C" }}>已分配</Text>
               </Button>
           </Segment>
           <Content>
-
-
-          {detail}
-
-        </Content>
+            { (this.state.seg) &&
+              detail
+            }
+            { (!this.state.seg) &&
+              detail_finish
+            }
+          </Content>
 
           </Container>
 

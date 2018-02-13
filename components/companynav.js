@@ -7,7 +7,7 @@ import rate from './rate.js'
 import repayment from './repayment.js'
 import login from './login.js'
 import addreserve from './addreserve.js'
-import reserve_detail from './reserve_detail.js'
+import reserve_detail from './compony_reserve_detail.js'
 import advertisement from './advertisement.js'
 import chatroom from './chatroom.js'
 
