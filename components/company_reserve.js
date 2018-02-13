@@ -9,6 +9,8 @@ import {
 import {
   Container, Header, Left, Body, Right, Button, Icon, Title, Content, Card, CardItem, Label, Segment,Fab
 } from 'native-base';
+import Spinner from 'react-native-loading-spinner-overlay';
+
 var styles = StyleSheet.create({
     description: {
         fontSize: 20,
@@ -161,8 +163,12 @@ export default class company_reserve extends Component {
           </Container>
 
         );
-      } else{
-        return null;
+      }  else {
+        return (
+          <View style={{ flex: 1 }}>
+              <Spinner visible={!this.state.loading} textContent={""} overlayColor={"rgba(0, 0, 0, 0.5)"} textStyle={{color: '#FFF'}} />
+          </View>
+        );
       }
     }
 }

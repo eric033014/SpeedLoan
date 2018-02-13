@@ -9,6 +9,8 @@ import {
 import {
   Container, Header, Left, Body, Right, Button, Icon, Title, Content, Card, CardItem, Label, Segment, Fab
 } from 'native-base';
+import Spinner from 'react-native-loading-spinner-overlay';
+
 var styles = StyleSheet.create({
     description: {
         fontSize: 20,
@@ -29,6 +31,7 @@ export default class reserve extends Component {
         title: '貸款諮詢',
         loading:false,
         userid :this.props.screenProps.auth().currentUser.uid,
+        visible: false
       }
       console.log("con");
     }
@@ -92,7 +95,8 @@ export default class reserve extends Component {
         console.log("detail1: "+detail[0]);
       }).then(function(){
         this.setState({
-          loading:true
+          loading:true,
+          visible: !this.state.visible
         });
         console.log("detail2: "+detail[0]);
       }.bind(this));
@@ -103,8 +107,13 @@ export default class reserve extends Component {
   //   }
   render() {
     const { title } = this.state;
-
-    if(this.state.loading){
+    if(!this.state.visible){
+      return(
+        <View style={{ flex: 1 }}>
+            <Spinner visible={!this.state.visible} textContent={""} overlayColor={"rgba(0, 0, 0, 0.5)"} textStyle={{color: '#FFF'}} />
+        </View>
+      );
+    }else if(this.state.loading){
       return (
         <Container style={{ backgroundColor: '#EFEFEF' }} >
         <Header style={{backgroundColor:"#3C3C3C"}} androidStatusBarColor="#282828">

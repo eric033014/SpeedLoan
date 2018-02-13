@@ -12,6 +12,7 @@ import {
 import {
   Container, Header, Left, Body, Right, Button, Icon, Title, Content, Form, Item, Input, Label, Picker
 } from 'native-base';
+import Spinner from 'react-native-loading-spinner-overlay';
 import Toast from 'react-native-simple-toast';
 var styles = StyleSheet.create({
     description: {
@@ -42,7 +43,8 @@ export default class profile extends Component {
         worked_select: 'key0',
         region_select: 'key0',
         loading: false,
-        userid:this.props.screenProps.auth().currentUser.uid
+        userid:this.props.screenProps.auth().currentUser.uid,
+        visible: false
     });
 
   }
@@ -62,7 +64,8 @@ export default class profile extends Component {
           });
       } else {
           this.setState({
-            loading: true
+            loading: true,
+            visible: !this.state.visible
           });
       }
       }.bind(this));
@@ -317,7 +320,11 @@ export default class profile extends Component {
 
         );
       } else {
-        return null;
+        return (
+          <View style={{ flex: 1 }}>
+              <Spinner visible={!this.state.loading} textContent={""} overlayColor={"rgba(0, 0, 0, 0.5)"} textStyle={{color: '#FFF'}} />
+          </View>
+        );
       }
     }
 }

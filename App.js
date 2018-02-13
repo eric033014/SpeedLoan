@@ -16,6 +16,8 @@ import {
   View,
   Image
 } from 'react-native';
+import Spinner from 'react-native-loading-spinner-overlay';
+import Toast from 'react-native-simple-toast';
 
 
 
@@ -77,11 +79,15 @@ export default class App extends Component {
         user_border: '#FFFFFF',
         password_border: '#FFFFFF',
         showregis: false,
-        iscompony: '1'
+        iscompony: '1',
+        processing: false
       };
 
     }
     onCreateButtonPress(){
+      this.setState({
+        processing: true
+      });
       console.log("create");
       var { email, password } = this.state;
       firebase.auth().createUserWithEmailAndPassword(email, password)
@@ -89,7 +95,9 @@ export default class App extends Component {
       .catch(this.onLoginFail.bind(this));
     }
     onButtonPress() {
-        //this.setState({login: true,});
+        this.setState({
+          processing: true
+        });
         var { email, password } = this.state;
         console.log(email+" "+password);
 
@@ -112,6 +120,7 @@ export default class App extends Component {
             error: 'Success',
             login: true,
             checkcompony: this.state.iscompany,
+            processing: false
         });
         var user=firebase.auth().currentUser.uid;
         console.log(user);
@@ -127,6 +136,7 @@ export default class App extends Component {
             loading: false,
             error: 'Success',
             login: true,
+            processing: false
         });
         var user=firebase.auth().currentUser.uid;
         console.log(user);
@@ -138,9 +148,24 @@ export default class App extends Component {
         }.bind(this));
         return (<Button title="Logout" onPress={() => firebase.auth().signOut()}></Button>);
     }
-    onLoginFail() {
-      console.log("login failed");
-      this.setState({ error: 'Failed', loading: false });
+    onLoginFail(err) {
+      console.log(err);
+      var msg = "登入失敗!";
+      switch(err.code){
+        case 'auth/invalid-email':
+          msg = "帳號格式錯誤!請使用email登入(格式:xxx@yyy.zzz)";
+          break;
+        case 'auth/user-disabled':
+          msg = "帳號遭到禁用!請聯絡所屬事務所或通知我們!";
+          break;
+        case 'auth/user-not-found': case 'auth/wrong-password':
+          msg = "密碼錯誤或帳號不存在!請重新確認密碼或註冊以取得會員!";
+          break;
+        default:
+          msg = "登入失敗!"
+      }
+      this.setState({ error: msg, loading: false, processing: false });
+      Toast.show(msg);
     }
     onValueChange_iscompany(value: string) {
       this.setState({
@@ -158,7 +183,13 @@ export default class App extends Component {
       });
     }
   render(){
-      if(this.state.login){
+      if(this.state.processing){
+          return(
+            <View style={{ flex: 1 }}>
+                <Spinner visible={this.state.processing} textContent={""} overlayColor={"rgba(0, 0, 0, 0.5)"} textStyle={{color: '#FFF'}} />
+            </View>
+          );
+      }else if(this.state.login){
         if(this.state.checkcompony == '0'){
           return <Nav screenProps={firebase}/>;
         } else{
