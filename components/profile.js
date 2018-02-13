@@ -12,6 +12,7 @@ import {
 import {
   Container, Header, Left, Body, Right, Button, Icon, Title, Content, Form, Item, Input, Label, Picker
 } from 'native-base';
+import Toast from 'react-native-simple-toast';
 var styles = StyleSheet.create({
     description: {
         fontSize: 20,
@@ -97,6 +98,7 @@ export default class profile extends Component {
             location: this.state.region_select,
             year: this.state.worked_select
         });
+        Toast.show('更新完成', Toast.SHORT);
     }
 
     static navigationOptions = {

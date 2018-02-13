@@ -1,5 +1,6 @@
 import React, { Component }  from 'react';
-import reserve from './reserve.js'
+import reserve from './reserve.js';
+import Toast from 'react-native-simple-toast';
 import {
   Platform,
   StyleSheet,
@@ -52,6 +53,8 @@ export default class reserve_detail extends Component {
       this.props.screenProps.database().ref('/reserve/'+this.props.navigation.state.params.key).update({
         finish:1,
       });
+      Toast.show('已將狀態調整為解決', Toast.SHORT);
+      this.props.navigation.navigate('貸款諮詢');
     }
     //_onChange = (formData) => console.log(JSON.stringify(formData, null, " "));
 

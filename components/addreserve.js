@@ -1,5 +1,6 @@
 import React, { Component }  from 'react';
 import reserve from './reserve.js'
+import Toast from 'react-native-simple-toast';
 import {
   Platform,
   StyleSheet,
@@ -157,6 +158,8 @@ export default class addreserve extends Component {
             area3: this.state.select_city_area3,
             finish:false,
         });
+        Toast.show('預約成功', Toast.SHORT);
+        this.props.navigation.navigate('貸款諮詢');
     }
     onValueChange_loan_category(value: string) {
       this.setState({
