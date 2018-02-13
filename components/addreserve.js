@@ -251,9 +251,17 @@ export default class addreserve extends Component {
     }
     _onChange = (formData) => console.log(JSON.stringify(formData, null, " "));
 
-   static navigationOptions = {
-      drawerLabel: () => null
-    }
+    static navigationOptions = {
+  title: '新增貸款諮詢',
+  headerTintColor: '#7ACECE',
+  headerStyle: {
+  backgroundColor: '#3C3C3C',
+  },
+  headerTitleStyle: {
+    color: 'white',
+    fontWeight: "normal"
+  }
+  };
   // constructor(props) {
   //     super(props);
   //     this.state = {};
@@ -262,18 +270,6 @@ export default class addreserve extends Component {
       const { title } = this.state;
       return (
         <Container>
-        <Header style={{backgroundColor:"#3C3C3C"}} androidStatusBarColor="#282828">
-          <Left>
-            <Button transparent>
-              <Icon type="Ionicons" name='md-arrow-back' style={{color:"#7ACECE"}}  onPress={()=>
-              this.props.navigation.navigate('貸款諮詢')}/>
-            </Button>
-          </Left>
-          <Body>
-          <Title>{title}</Title>
-          </Body>
-          <Right/>
-        </Header>
    	      <Content>
             <Form style={{paddingBottom: 30, paddingTop: 30}}>
             <Label style={{ marginLeft: 15, marginTop: 10, fontSize: 15 }}>申請貸款類別</Label>

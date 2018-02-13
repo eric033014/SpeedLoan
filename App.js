@@ -18,6 +18,7 @@ import {
 } from 'react-native';
 
 
+
 import firebase from 'firebase';
 var Nav = require('./components/nav.js');
 var CompanyNav = require('./components/companynav.js')
@@ -46,6 +47,7 @@ const styles = StyleSheet.create({
       color: 'red'
   },
 });
+
 
 const instructions = Platform.select({
   ios: 'Press Cmd+R to reload,\n' +

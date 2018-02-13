@@ -33,9 +33,7 @@ export default class reserve extends Component {
       console.log("con");
     }
     static navigationOptions = {
-      drawerIcon: ({ tintColor }) => (
-        <Icon type='Entypo' name="message" style={{ fontSize: 20 , color: tintColor }}  />
-      )
+      header: null
     }
     // itemClick() {
     //   this.props.navigation.navigate('reserve_detail');
@@ -158,7 +156,7 @@ export default class reserve extends Component {
           containerStyle={{ }}
           style={{ backgroundColor: '#7ACECE' }}
           position="bottomRight"
-          onPress={() => this.props.navigation.navigate('TEMP')}>
+          onPress={() => this.props.navigation.navigate('addreserve')}>
           <Icon name="add" />
         </Fab>
         </Container>

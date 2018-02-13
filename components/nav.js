@@ -14,7 +14,8 @@ import chatroom from './chatroom.js'
 
 import {
   DrawerNavigator,
-  DrawerItems
+  DrawerItems,
+  StackNavigator
 } from 'react-navigation';
 import {
   Container, Header, Left, Body, Right, Button, Icon, Title, Content
@@ -60,14 +61,27 @@ const customnav = (props) =>(
   </Container>
 )
 
-
+const AppNavigator = StackNavigator(
+  {
+    reserve_detail:{ screen:reserve_detail},
+    addreserve:{ screen:addreserve},
+    reserve:{ screen:reserve,
+      navigationOptions : {
+      drawerIcon: ({ tintColor }) => (
+        <Icon type='Entypo' name="message" style={{ fontSize: 20 , color: tintColor }}  />
+      )
+    }}
+  },
+  {
+    initialRouteName:'reserve',
+    headerMode: 'screen'
+  }
+);
 
 
 const nav = DrawerNavigator(
   {
-    reserve_detail:{ screen:reserve_detail},
-    TEMP:{ screen:addreserve},
-    貸款諮詢:{ screen:reserve},
+    貸款諮詢:{ screen:AppNavigator},
     貸款說明:{screen:loan_intro},
     利率試算:{screen:rate},
     個人資訊:{ screen:profile},
@@ -84,4 +98,6 @@ const nav = DrawerNavigator(
 
   }
 );
+
+
 module.exports = nav;

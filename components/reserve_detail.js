@@ -68,25 +68,38 @@ export default class reserve_detail extends Component {
   //     this.state = {};
   //   }
   static navigationOptions = {
-    drawerLabel: () => null
-  }
+title: '貸款諮詢細節',
+headerTintColor: '#7ACECE',
+headerStyle: {
+backgroundColor: '#3C3C3C',
+},
+headerTitleStyle: {
+  color: 'white',
+  fontWeight: "normal"
+}
+};
+  /*
+  old header
+
+  <Header style={{backgroundColor:"#3C3C3C"}} androidStatusBarColor="#282828">
+    <Left>
+      <Button transparent>
+        <Icon type="Ionicons" name='md-arrow-back' style={{color:"#7ACECE"}}  onPress={()=>
+        this.props.navigation.navigate(this.props.navigation.state.params.back)}/>
+      </Button>
+    </Left>
+    <Body>
+    <Title>{title}</Title>
+    </Body>
+    <Right/>
+  </Header>
+
+  */
  render() {
    const { title } = this.state;
    //console.log("xxx "+this.props.navigation.state.params.test);
    return (
      <Container style={{backgroundColor:'#EFEFEF'}}>
-     <Header style={{backgroundColor:"#3C3C3C"}} androidStatusBarColor="#282828">
-       <Left>
-         <Button transparent>
-           <Icon type="Ionicons" name='md-arrow-back' style={{color:"#7ACECE"}}  onPress={()=>
-           this.props.navigation.navigate(this.props.navigation.state.params.back)}/>
-         </Button>
-       </Left>
-       <Body>
-       <Title>{title}</Title>
-       </Body>
-       <Right/>
-     </Header>
        <Content>
        { (this.props.navigation.state.params.finish == 0) &&
          <Button block onPress={this.onReslovePress.bind(this)} style={{ backgroundColor: "#7ACECE",height: 45, marginLeft: 15, marginRight: 15, elevation: 0 }}>
