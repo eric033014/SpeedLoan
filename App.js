@@ -92,7 +92,7 @@ export default class App extends Component {
       var { email, password } = this.state;
       firebase.auth().createUserWithEmailAndPassword(email, password)
       .then(this.onCreateLoginSuccess.bind(this))
-      .catch(this.onLoginFail.bind(this));
+      .catch(this.onCreateFail.bind(this));
     }
     onButtonPress() {
         this.setState({
@@ -163,6 +163,25 @@ export default class App extends Component {
           break;
         default:
           msg = "登入失敗!"
+      }
+      this.setState({ error: msg, loading: false, processing: false });
+      Toast.show(msg);
+    }
+    onCreateFail(err) {
+      console.log(err);
+      var msg = "註冊失敗!請聯絡我們來處理您的問題。";
+      switch(err.code){
+        case 'auth/invalid-email':
+          msg = "帳號格式錯誤!請使用email登入(格式:xxx@yyy.zzz)";
+          break;
+        case 'auth/email-already-in-use':
+          msg = "Email已被使用!請從登入頁面輸入密碼登入，若忘記密碼請聯絡我們。";
+          break;
+        case 'auth/weak-password': case 'auth/wrong-password':
+          msg = "密碼強度過低!請加強您的密碼強度!";
+          break;
+        default:
+          msg = "註冊失敗!請聯絡我們來處理您的問題。"
       }
       this.setState({ error: msg, loading: false, processing: false });
       Toast.show(msg);
