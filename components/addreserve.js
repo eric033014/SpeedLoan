@@ -269,7 +269,7 @@ export default class addreserve extends Component {
     render() {
       const { title } = this.state;
       return (
-        <Container>
+        <Container style={{ backgroundColor: '#EFEFEF' }} >
    	      <Content>
             <Form style={{paddingBottom: 30, paddingTop: 30}}>
             <Label style={{ marginLeft: 15, marginTop: 10, fontSize: 15 }}>申請貸款類別</Label>

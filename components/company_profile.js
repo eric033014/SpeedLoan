@@ -132,7 +132,7 @@ export default class company_profile extends Component {
       const { title } = this.state;
       if(this.state.loading){
         return (
-          <Container>
+          <Container style={{ backgroundColor: '#EFEFEF' }} >
           <Header style={{backgroundColor:"#3C3C3C"}} androidStatusBarColor="#282828">
             <Left>
               <Button transparent>

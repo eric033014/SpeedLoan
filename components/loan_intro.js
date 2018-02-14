@@ -39,7 +39,7 @@ export default class reserve_detail extends Component {
  render() {
    const { title } = this.state;
    return (
-     <Container>
+     <Container style={{ backgroundColor: '#EFEFEF' }} >
      <Header style={{backgroundColor:"#3C3C3C"}} androidStatusBarColor="#282828" hasTabs>
        <Left>
        <Button transparent>
@@ -52,9 +52,9 @@ export default class reserve_detail extends Component {
        </Body>
        <Right/>
      </Header>
-     <Tabs renderTabBar={()=> <ScrollableTab />} tabStyle={{backgroundColor:"#3C3C3C"}}>
+     <Tabs renderTabBar={()=> <ScrollableTab />} tabStyle={{backgroundColor:"#3C3C3C"}} style={{backgroundColor:"#3C3C3C"}}>
         <Tab heading="小額信貸" tabStyle={{backgroundColor:"#3C3C3C"}} activeTabStyle={{backgroundColor:"#3C3C3C"}} textStyle={{ color: "gray" }} >
-          <Content>
+          <Content style={{ backgroundColor: '#EFEFEF' }} >
           <Form style={{borderColor: 'transparent', marginRight: 15, marginTop: 30}}>
             <Item style={{borderColor: 'transparent', marginRight: 15}}><Label style={{ color:'gray' }}>申請條件</Label></Item>
             <Item style={{borderColor: 'transparent', marginRight: 15, marginTop: 0}}><Label>1.{"\n"}上班族有勞保及薪轉即可{"\n"}
@@ -79,7 +79,7 @@ export default class reserve_detail extends Component {
           </Content>
         </Tab>
         <Tab heading="土地貸款" tabStyle={{backgroundColor:"#3C3C3C"}} activeTabStyle={{backgroundColor:"#3C3C3C"}} textStyle={{ color: "gray" }} >
-        <Content>
+        <Content style={{ backgroundColor: '#EFEFEF' }} >
         <Form style={{borderColor: 'transparent', marginRight: 15, marginTop: 30}}>
           <Item style={{borderColor: 'transparent', marginRight: 15}}><Label style={{ color:'gray' }}>申請條件</Label></Item>
           <Item style={{borderColor: 'transparent', marginRight: 15, marginTop: 0}}><Label>1.{"\n"}須具備權狀，持分地亦可，由專業地政人士辦理
@@ -104,7 +104,7 @@ export default class reserve_detail extends Component {
         </Content>
         </Tab>
         <Tab heading="房屋二胎貸款" tabStyle={{backgroundColor:"#3C3C3C"}} activeTabStyle={{backgroundColor:"#3C3C3C"}} textStyle={{ color: "gray" }} >
-        <Content>
+        <Content style={{ backgroundColor: '#EFEFEF' }} >
         <Form style={{borderColor: 'transparent', marginRight: 15, marginTop: 30}}>
           <Item style={{borderColor: 'transparent', marginRight: 15}}><Label style={{ color:'gray' }}>申請條件</Label></Item>
           <Item style={{borderColor: 'transparent', marginRight: 15, marginTop: 0}}><Label>1.{"\n"}須自有房屋 具備房屋權狀
@@ -129,7 +129,7 @@ export default class reserve_detail extends Component {
         </Content>
         </Tab>
         <Tab heading="汽車貸款" tabStyle={{backgroundColor:"#3C3C3C"}} activeTabStyle={{backgroundColor:"#3C3C3C"}} textStyle={{ color: "gray" }} >
-        <Content>
+        <Content style={{ backgroundColor: '#EFEFEF' }} >
         <Form style={{borderColor: 'transparent', marginRight: 15, marginTop: 30}}>
           <Item style={{borderColor: 'transparent', marginRight: 15}}><Label style={{ color:'gray' }}>申請條件</Label></Item>
           <Item style={{borderColor: 'transparent', marginRight: 15, marginTop: 0}}><Label>不限車種：{"\n"}國產車、分期車、進口車、公司車、計程車、三噸半以下貨車皆可承作。
@@ -154,7 +154,7 @@ export default class reserve_detail extends Component {
         </Content>
         </Tab>
         <Tab heading="工商融資" tabStyle={{backgroundColor:"#3C3C3C"}} activeTabStyle={{backgroundColor:"#3C3C3C"}} textStyle={{ color: "gray" }} >
-        <Content>
+        <Content style={{ backgroundColor: '#EFEFEF' }} >
         <Form style={{borderColor: 'transparent', marginRight: 15, marginTop: 30}}>
           <Item style={{borderColor: 'transparent', marginRight: 15}}><Label style={{ color:'gray' }}>申請條件</Label></Item>
           <Item style={{borderColor: 'transparent', marginRight: 15, marginTop: 0}}><Label>年滿30歲之公司負責人，開業滿一年以上，資本額五十萬元以上之公司負 責人皆可辦理工商融資。
