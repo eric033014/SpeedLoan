@@ -99,7 +99,7 @@ headerTitleStyle: {
    const { title } = this.state;
    //console.log("xxx "+this.props.navigation.state.params.test);
    return (
-     <Container style={{backgroundColor:'#EFEFEF'}}>
+     <Container style={{ backgroundColor: '#EFEFEF' }} >
        <Content>
        { (this.props.navigation.state.params.finish == 0) &&
          <Button block onPress={this.onReslovePress.bind(this)} style={{ marginTop: 30, backgroundColor: "#7ACECE",height: 45, marginLeft: 15, marginRight: 15, elevation: 0 }}>

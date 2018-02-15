@@ -41,7 +41,7 @@ export default class chatroom extends Component {
     render() {
       const { title } = this.state;
       return (
-        <Container>
+        <Container style={{ backgroundColor: '#EFEFEF' }} >
         <Header style={{backgroundColor:"#3C3C3C"}} androidStatusBarColor="#282828">
           <Left>
             <Button transparent>
