@@ -1,4 +1,4 @@
-package com.speedloan;
+package com.speedloanx;
 
 import android.app.Application;
 
