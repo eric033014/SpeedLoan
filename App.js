@@ -81,7 +81,7 @@ export default class App extends Component {
         user_border: '#FFFFFF',
         password_border: '#FFFFFF',
         showregis: false,
-        iscompony: '1',
+        iscompony: '0',
         processing: false,
         checkcompony:'0',
       };
@@ -279,23 +279,7 @@ export default class App extends Component {
             </Item>
             <Item style={{borderColor: 'transparent', marginRight: 15}}>
             </Item>
-            { this.state.showregis &&
-              <Label style={{ color: 'white',marginLeft: 15, marginTop: 10, fontSize: 15 }}>欲申請資格</Label>
-            }
-            { this.state.showregis &&
-              <Picker
-              mode="dropdown"
-              placeholder="請選擇註冊資格..."
-              selectedValue={this.state.iscompany}
-              onValueChange={this.onValueChange_iscompany.bind(this)}
-              itemTextStyle={{ color: '#FFFFFF' }}
-              style={{ marginLeft: 15, marginRight: 15, color: '#FFFFFF' }}
-              >
-              <Item label="請選擇註冊資格..." value='0' />
-              <Item label="會員" value='0' />
-              <Item label="公司" value='1' />
-            </Picker>
-            }
+
             { this.state.showregis &&
               <View
                 style={{
