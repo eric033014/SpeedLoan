@@ -14,7 +14,8 @@ import {
   Text,
   TextInput,
   View,
-  Image
+  Image,
+  StatusBar
 } from 'react-native';
 import Spinner from 'react-native-loading-spinner-overlay';
 import Toast from 'react-native-simple-toast';
@@ -222,6 +223,7 @@ export default class App extends Component {
       } else{
         return (
           <Container style={{backgroundColor:"#3C3C3C"}}>
+          <StatusBar barStyle="light-content"/>
           <Content>
           <Form style={{paddingTop: 60}}>
             {

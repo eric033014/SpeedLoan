@@ -133,15 +133,15 @@ export default class company_profile extends Component {
       if(this.state.loading){
         return (
           <Container style={{ backgroundColor: '#EFEFEF' }} >
-          <Header style={{backgroundColor:"#3C3C3C"}} androidStatusBarColor="#282828">
+          <Header style={{backgroundColor:"#3C3C3C"}} iosBarStyle="light-content" androidStatusBarColor="#282828">
             <Left>
-              <Button transparent>
-                <Icon name='menu' style={{color:"#7ACECE"}}  onPress={()=>
-                this.props.navigation.navigate('DrawerOpen')}/>
-              </Button>
+            <Button transparent>
+              <Icon name='menu' style={{color:"#7ACECE"}}  onPress={()=>
+              this.props.navigation.navigate('DrawerOpen')}/>
+            </Button>
             </Left>
             <Body>
-            <Title>{title}</Title>
+            <Title style={{ color: "white" }}>{title}</Title>
             </Body>
             <Right/>
           </Header>
@@ -223,6 +223,7 @@ export default class company_profile extends Component {
               selectedValue={this.state.region_select}
               onValueChange={this.onValueChange_region_select.bind(this)}
               style={{ marginLeft: 15, marginRight: 15 }}
+              iosHeader="所在地..."
               >
               <Item label="北部地區" value="key0" />
               <Item label="中部地區" value="key1" />
@@ -245,6 +246,7 @@ export default class company_profile extends Component {
              selectedValue={this.state.worked_select}
              onValueChange={this.onValueChange_worked_select.bind(this)}
              style={{ marginLeft: 15, marginRight: 15 }}
+             iosHeader="您的資歷..."
              >
              <Item label="<3yr" value="key0" />
              <Item label="3yr ~ 5yr" value="key1" />

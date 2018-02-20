@@ -42,21 +42,21 @@ export default class chatroom extends Component {
       const { title } = this.state;
       return (
         <Container style={{ backgroundColor: '#EFEFEF' }} >
-        <Header style={{backgroundColor:"#3C3C3C"}} androidStatusBarColor="#282828">
+        <Header style={{backgroundColor:"#3C3C3C"}} iosBarStyle="light-content" androidStatusBarColor="#282828">
           <Left>
-            <Button transparent>
-              <Icon name='menu' style={{color:"#7ACECE"}}  onPress={()=>
-              this.props.navigation.navigate('DrawerOpen')}/>
-            </Button>
+          <Button transparent>
+            <Icon name='menu' style={{color:"#7ACECE"}}  onPress={()=>
+            this.props.navigation.navigate('DrawerOpen')}/>
+          </Button>
           </Left>
           <Body>
-          <Title>{title}</Title>
+          <Title style={{ color: "white" }}>{title}</Title>
           </Body>
           <Right/>
         </Header>
-          <View style={{ justifyContent: 'center', alignItems: 'center', height: '100%', marginTop: -100 }}>
+          <View style={{ justifyContent: 'center', alignItems: 'center', height: '100%', marginTop: 0 }}>
             <Image
-            style= {{ width: 150, height: 122.15 }}
+            style= {{ width: 150, height: 122.15, marginTop: -150 }}
             source = {require('../assets/img/developing.png')} />
           </View>
         </Container>

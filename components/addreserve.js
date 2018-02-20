@@ -97,11 +97,11 @@ export default class addreserve extends Component {
       this.state = {
         title: '預約貸款諮詢',
         city_options: arr,
-        area_options: [],
+        area_options: ['請選擇鄉鎮市區...'],
         hascity: false,
-        area_options2: [],
+        area_options2: ['請先選擇城市...'],
         hascity2: false,
-        area_options3: [],
+        area_options3: ['請先選擇城市...'],
         hascity3: false,
         userid:this.props.screenProps.auth().currentUser.uid,
         loan_category: "小額信貸",
@@ -412,7 +412,6 @@ export default class addreserve extends Component {
                onValueChange={this.onValueChange_select_city.bind(this)}
                style={{ marginLeft: 15, marginRight: 15}}
                >
-               <Item label="請選擇縣市..." value="none" />
                {this.state.city_options.map((item, index) => {
                   return (<Item label={item} value={item} key={index}/>)
                })}
@@ -435,7 +434,6 @@ export default class addreserve extends Component {
                   onValueChange={this.onValueChange_select_city_area.bind(this)}
                   style={{ marginLeft: 15, marginRight: 15}}
                   >
-                  <Item label="請選擇鄉鎮市區..." value="none" />
                   {this.state.area_options.map((item, index) => {
                      return (<Item label={item} value={item} key={index}/>)
                   })}
@@ -494,7 +492,6 @@ export default class addreserve extends Component {
                    onValueChange={this.onValueChange_select_city2.bind(this)}
                    style={{ marginLeft: 15, marginRight: 15}}
                    >
-                   <Item label="請選擇縣市..." value="none" />
                    {this.state.city_options.map((item, index) => {
                       return (<Item label={item} value={item} key={index}/>)
                    })}
@@ -517,7 +514,6 @@ export default class addreserve extends Component {
                       onValueChange={this.onValueChange_select_city_area2.bind(this)}
                       style={{ marginLeft: 15, marginRight: 15}}
                       >
-                      <Item label="請選擇鄉鎮市區..." value="none" />
                       {this.state.area_options2.map((item, index) => {
                          return (<Item label={item} value={item} key={index}/>)
                       })}
@@ -576,7 +572,6 @@ export default class addreserve extends Component {
                        onValueChange={this.onValueChange_select_city3.bind(this)}
                        style={{ marginLeft: 15, marginRight: 15}}
                        >
-                       <Item label="請選擇縣市..." value="none" />
                        {this.state.city_options.map((item, index) => {
                           return (<Item label={item} value={item} key={index}/>)
                        })}
@@ -599,7 +594,6 @@ export default class addreserve extends Component {
                           onValueChange={this.onValueChange_select_city_area3.bind(this)}
                           style={{ marginLeft: 15, marginRight: 15}}
                           >
-                          <Item label="請選擇鄉鎮市區..." value="none" />
                           {this.state.area_options3.map((item, index) => {
                              return (<Item label={item} value={item} key={index}/>)
                           })}

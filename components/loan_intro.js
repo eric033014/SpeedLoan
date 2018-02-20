@@ -40,7 +40,7 @@ export default class reserve_detail extends Component {
    const { title } = this.state;
    return (
      <Container style={{ backgroundColor: '#EFEFEF' }} >
-     <Header style={{backgroundColor:"#3C3C3C"}} androidStatusBarColor="#282828" hasTabs>
+     <Header style={{backgroundColor:"#3C3C3C"}} iosBarStyle="light-content" androidStatusBarColor="#282828" hasTabs>
        <Left>
        <Button transparent>
          <Icon name='menu' style={{color:"#7ACECE"}}  onPress={()=>
@@ -48,12 +48,12 @@ export default class reserve_detail extends Component {
        </Button>
        </Left>
        <Body>
-       <Title>{title}</Title>
+       <Title style={{ color: "white" }}>{title}</Title>
        </Body>
        <Right/>
      </Header>
-     <Tabs renderTabBar={()=> <ScrollableTab />} tabStyle={{backgroundColor:"#3C3C3C"}} style={{backgroundColor:"#3C3C3C"}}>
-        <Tab heading="小額信貸" tabStyle={{backgroundColor:"#3C3C3C"}} activeTabStyle={{backgroundColor:"#3C3C3C"}} textStyle={{ color: "gray" }} >
+     <Tabs renderTabBar={()=> <ScrollableTab />} tabStyle={{backgroundColor:"#3C3C3C"}} style={{backgroundColor:"#3C3C3C"}}tabBarUnderlineStyle={{backgroundColor: "white"}} >
+        <Tab heading="小額信貸" tabStyle={{backgroundColor:"#3C3C3C"}} activeTabStyle={{backgroundColor:"#3C3C3C"}} activeTextStyle={{color: "white",fontWeight: "bold"}} textStyle={{ color: "gray" }} >
           <Content style={{ backgroundColor: '#EFEFEF' }} >
           <Form style={{borderColor: 'transparent', marginRight: 15, marginTop: 30}}>
             <Item style={{borderColor: 'transparent', marginRight: 15}}><Label style={{ color:'gray' }}>申請條件</Label></Item>
@@ -78,7 +78,7 @@ export default class reserve_detail extends Component {
           </Form>
           </Content>
         </Tab>
-        <Tab heading="土地貸款" tabStyle={{backgroundColor:"#3C3C3C"}} activeTabStyle={{backgroundColor:"#3C3C3C"}} textStyle={{ color: "gray" }} >
+        <Tab heading="土地貸款" tabStyle={{backgroundColor:"#3C3C3C"}} activeTabStyle={{backgroundColor:"#3C3C3C"}} activeTextStyle={{color: "white",fontWeight: "bold"}} textStyle={{ color: "gray" }} >
         <Content style={{ backgroundColor: '#EFEFEF' }} >
         <Form style={{borderColor: 'transparent', marginRight: 15, marginTop: 30}}>
           <Item style={{borderColor: 'transparent', marginRight: 15}}><Label style={{ color:'gray' }}>申請條件</Label></Item>
@@ -103,7 +103,7 @@ export default class reserve_detail extends Component {
         </Form>
         </Content>
         </Tab>
-        <Tab heading="房屋二胎貸款" tabStyle={{backgroundColor:"#3C3C3C"}} activeTabStyle={{backgroundColor:"#3C3C3C"}} textStyle={{ color: "gray" }} >
+        <Tab heading="房屋二胎貸款" tabStyle={{backgroundColor:"#3C3C3C"}} activeTabStyle={{backgroundColor:"#3C3C3C"}} activeTextStyle={{color: "white",fontWeight: "bold"}} textStyle={{ color: "gray" }} >
         <Content style={{ backgroundColor: '#EFEFEF' }} >
         <Form style={{borderColor: 'transparent', marginRight: 15, marginTop: 30}}>
           <Item style={{borderColor: 'transparent', marginRight: 15}}><Label style={{ color:'gray' }}>申請條件</Label></Item>
@@ -128,7 +128,7 @@ export default class reserve_detail extends Component {
         </Form>
         </Content>
         </Tab>
-        <Tab heading="汽車貸款" tabStyle={{backgroundColor:"#3C3C3C"}} activeTabStyle={{backgroundColor:"#3C3C3C"}} textStyle={{ color: "gray" }} >
+        <Tab heading="汽車貸款" tabStyle={{backgroundColor:"#3C3C3C"}} activeTabStyle={{backgroundColor:"#3C3C3C"}} activeTextStyle={{color: "white",fontWeight: "bold"}} textStyle={{ color: "gray" }} >
         <Content style={{ backgroundColor: '#EFEFEF' }} >
         <Form style={{borderColor: 'transparent', marginRight: 15, marginTop: 30}}>
           <Item style={{borderColor: 'transparent', marginRight: 15}}><Label style={{ color:'gray' }}>申請條件</Label></Item>
@@ -153,7 +153,7 @@ export default class reserve_detail extends Component {
         </Form>
         </Content>
         </Tab>
-        <Tab heading="工商融資" tabStyle={{backgroundColor:"#3C3C3C"}} activeTabStyle={{backgroundColor:"#3C3C3C"}} textStyle={{ color: "gray" }} >
+        <Tab heading="工商融資" tabStyle={{backgroundColor:"#3C3C3C"}} activeTabStyle={{backgroundColor:"#3C3C3C"}} activeTextStyle={{color: "white",fontWeight: "bold"}} textStyle={{ color: "gray" }} >
         <Content style={{ backgroundColor: '#EFEFEF' }} >
         <Form style={{borderColor: 'transparent', marginRight: 15, marginTop: 30}}>
           <Item style={{borderColor: 'transparent', marginRight: 15}}><Label style={{ color:'gray' }}>申請條件</Label></Item>
