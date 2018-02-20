@@ -82,7 +82,7 @@ export default class App extends Component {
         user_border: '#FFFFFF',
         password_border: '#FFFFFF',
         showregis: false,
-        iscompony: '0',
+        iscompany: '0',
         processing: false,
         checkcompony:'0',
       };
