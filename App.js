@@ -242,7 +242,7 @@ export default class App extends Component {
             }
             { (this.state.showregis) &&
               <Label style={{ color: 'white', fontSize: 20}}>
-                試用帳號註冊
+                帳號註冊
               </Label>
             }
             </Item>
@@ -281,17 +281,6 @@ export default class App extends Component {
             </Item>
             <Item style={{borderColor: 'transparent', marginRight: 15}}>
             </Item>
-
-            { this.state.showregis &&
-              <View
-                style={{
-                  borderBottomColor: '#FFFFFF',
-                  borderBottomWidth: 1,
-                  marginLeft: 15,
-                  marginRight: 15
-                }}
-               />
-            }
             <Label style={styles.errorTextStyle}>
               {this.state.error}
             </Label>

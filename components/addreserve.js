@@ -25,6 +25,9 @@ var styles = StyleSheet.create({
 });
 
 var city_area = [{
+  name: "none",
+  area: ["中正區","大同區","中山區","松山區","大安區","萬華區","信義區","士林區","北投區","內湖區","南港區","文山區"]
+},{
   name: "台北市",
   area: ["中正區","大同區","中山區","松山區","大安區","萬華區","信義區","士林區","北投區","內湖區","南港區","文山區"]
 },{
@@ -413,7 +416,11 @@ export default class addreserve extends Component {
                style={{ marginLeft: 15, marginRight: 15}}
                >
                {this.state.city_options.map((item, index) => {
-                  return (<Item label={item} value={item} key={index}/>)
+                  var display = item;
+                  if(String(item)=="none"){
+                    display="請選擇縣市..."
+                  }
+                  return (<Item label={display} value={item} key={index}/>)
                })}
                </Picker>
 
@@ -493,7 +500,11 @@ export default class addreserve extends Component {
                    style={{ marginLeft: 15, marginRight: 15}}
                    >
                    {this.state.city_options.map((item, index) => {
-                      return (<Item label={item} value={item} key={index}/>)
+                      var display = item;
+                      if(String(item)=="none"){
+                        display="請選擇縣市..."
+                      }
+                      return (<Item label={display} value={item} key={index}/>)
                    })}
                    </Picker>
 
@@ -573,7 +584,11 @@ export default class addreserve extends Component {
                        style={{ marginLeft: 15, marginRight: 15}}
                        >
                        {this.state.city_options.map((item, index) => {
-                          return (<Item label={item} value={item} key={index}/>)
+                          var display = item;
+                          if(String(item)=="none"){
+                            display="請選擇縣市..."
+                          }
+                          return (<Item label={display} value={item} key={index}/>)
                        })}
                        </Picker>
 
