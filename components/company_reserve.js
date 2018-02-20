@@ -114,15 +114,15 @@ export default class company_reserve extends Component {
       if(this.state.loading){
         return (
           <Container style={{ backgroundColor: '#EFEFEF' }} >
-          <Header style={{backgroundColor:"#3C3C3C"}} androidStatusBarColor="#282828">
+          <Header style={{backgroundColor:"#3C3C3C"}} iosBarStyle="light-content" androidStatusBarColor="#282828">
             <Left>
-              <Button transparent>
-                <Icon name='menu' style={{color:"#7ACECE"}}  onPress={()=>
-                this.props.navigation.navigate('DrawerOpen')}/>
-              </Button>
+            <Button transparent>
+              <Icon name='menu' style={{color:"#7ACECE"}}  onPress={()=>
+              this.props.navigation.navigate('DrawerOpen')}/>
+            </Button>
             </Left>
             <Body>
-            <Title>{title}</Title>
+            <Title style={{ color: "white" }}>{title}</Title>
             </Body>
             <Right/>
           </Header>
@@ -145,6 +145,7 @@ export default class company_reserve extends Component {
                 }}
                 active={!this.state.seg  ? true : false}
                 onPress={() => this.setState({ seg: false })}
+                last
               >
                 <Text style={{ color: !this.state.seg ? "#FFF" : "#3C3C3C" }}>已分配</Text>
               </Button>

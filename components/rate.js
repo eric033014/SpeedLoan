@@ -87,15 +87,15 @@ export default class reserve extends Component {
       const { title } = this.state;
       return (
         <Container style={{ backgroundColor: '#EFEFEF' }} >
-        <Header style={{backgroundColor:"#3C3C3C"}} androidStatusBarColor="#282828">
+        <Header style={{backgroundColor:"#3C3C3C"}} iosBarStyle="light-content" androidStatusBarColor="#282828">
           <Left>
-            <Button transparent>
-              <Icon name='menu' style={{color:"#7ACECE"}}  onPress={()=>
-              this.props.navigation.navigate('DrawerOpen')}/>
-            </Button>
+          <Button transparent>
+            <Icon name='menu' style={{color:"#7ACECE"}}  onPress={()=>
+            this.props.navigation.navigate('DrawerOpen')}/>
+          </Button>
           </Left>
           <Body>
-          <Title>{title}</Title>
+          <Title style={{ color: "white" }}>{title}</Title>
           </Body>
           <Right/>
         </Header>

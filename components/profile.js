@@ -7,7 +7,8 @@ import {
   StyleSheet,
   Text,
   TextInput,
-  View
+  View,
+  StatusBar
 } from 'react-native';
 import {
   Container, Header, Left, Body, Right, Button, Icon, Title, Content, Form, Item, Input, Label, Picker
@@ -139,7 +140,7 @@ export default class profile extends Component {
       if(this.state.loading){
         return (
           <Container style={{ backgroundColor: '#EFEFEF' }} >
-          <Header style={{backgroundColor:"#3C3C3C"}} androidStatusBarColor="#282828">
+          <Header style={{backgroundColor:"#3C3C3C", color: "white"}} iosBarStyle="light-content" androidStatusBarColor="#282828">
             <Left>
               <Button transparent>
                 <Icon name='menu' style={{color:"#7ACECE"}}  onPress={()=>
@@ -147,7 +148,7 @@ export default class profile extends Component {
               </Button>
             </Left>
             <Body>
-            <Title>{title}</Title>
+            <Title style={{ color: "white" }}>{title}</Title>
             </Body>
             <Right/>
           </Header>
@@ -228,6 +229,7 @@ export default class profile extends Component {
                 selectedValue={this.state.job_select}
                 onValueChange={this.onValueChange_job_select.bind(this)}
                 style={{ marginLeft: 15, marginRight: 15 }}
+                iosHeader="您的職業..."
                 >
                 <Item label="請選擇您的職業..." value="key0" />
                 <Item label="財會人員" value="財會人員" />
@@ -252,6 +254,7 @@ export default class profile extends Component {
                selectedValue={this.state.income_select}
                onValueChange={this.onValueChange_income_select.bind(this)}
                style={{ marginLeft: 15, marginRight: 15 }}
+               iosHeader="您的年收入..."
                >
                <Item label="<25w" value="250000" />
                <Item label="26W ~ 50W" value="500000" />
@@ -274,6 +277,7 @@ export default class profile extends Component {
               selectedValue={this.state.region_select}
               onValueChange={this.onValueChange_region_select.bind(this)}
               style={{ marginLeft: 15, marginRight: 15 }}
+              iosHeader="您的所在地..."
               >
               <Item label="北部地區" value="key0" />
               <Item label="中部地區" value="key1" />
@@ -296,6 +300,7 @@ export default class profile extends Component {
              selectedValue={this.state.worked_select}
              onValueChange={this.onValueChange_worked_select.bind(this)}
              style={{ marginLeft: 15, marginRight: 15 }}
+             iosHeader="您的年資..."
              >
              <Item label="<3yr" value="key0" />
              <Item label="3yr ~ 5yr" value="key1" />
